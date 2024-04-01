@@ -1,0 +1,112 @@
+body{
+	font-family: 'Istok Web', sans-serif;
+	color: #4b3f55;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+h2{
+	color: #775ba3;
+	font-size: 40px;
+	font-weight: bold;
+}
+
+.logo {
+	text-align: center;
+	color: white;
+}
+.ic-2{
+	height: 600px;
+}
+.navbar {
+	background: #775ba3;
+}
+.nav-link {
+	text-transform: uppercase;
+	font-size: 14px;
+}
+
+.register-icon{
+	font-size: 25px;
+}
+.carousel-indicators li {
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	background: transparent;
+	border: solid 2px white;
+	opacity: 1;
+}
+.carousel-indicators li.active {
+	background: white;
+	border: 0;
+}
+.promo-text
+{
+	font-size: 23px;
+}
+.card-content{
+	font-size: 13px;
+	line-height: 23px;
+}
+.inner-shadow {
+	/*-webkit-box-shadow: inset 0px 3px 3px -3px rgba(0,0,0,0.5);*/
+	box-shadow: inset 0px 3px 13px -3px rgba(0,0,0,0.5);
+}
+.sn-icon {
+	font-size: 25px;
+	text-shadow: 1px 2px 3px rgba(0,0,0,0.5);
+}
+.lavre-big{
+	font-size: 34px;
+	font-weight: normal;
+}
+.card-content i{
+	font-size: 55px;
+	padding: 10px;
+	color: #775ba3;
+	border-radius: 50%;
+	border: solid 2px #775ba3;
+}
+
+.brdr{
+	border-style: solid;
+	color: #6FCC9B; 
+	border-width: 3px 0;
+}
+.card-title{
+	text-transform: uppercase;
+	font-size: 12px;
+	text-align: left;
+	font-weight: bold;
+}
+.card-title span{
+	font-size: 15px;
+}
+.card-text{
+	text-align: center;
+	color: #4b3f55;
+}
+.job-block span{
+	color: pink;
+}
+.footer{
+	height: 85px;
+    background: #397845;
+    color: white;
+}
+
+.footer a, p{
+	font-size: 14px;
+	color: white;
+	text-decoration: none;
+}
+.footer a:hover{
+	color: lightblue;
+}
+/*@media (min-width: 768px)
+{
+	.navbar-expand-md .navbar-nav .nav-link{
+		padding: 10 20px;
+	}
+}*/
