@@ -11,3 +11,13 @@ class Room(models.Model):
         verbose_name = 'Комната'
         verbose_name_plural = 'Комнаты'
 
+
+class Category(models.Model):
+    name = models.CharField(max_length=50, null=False, blank=False, verbose_name='Название категории мебели')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
