@@ -1,0 +1,406 @@
+[
+{
+  "model": "webapp.room",
+  "pk": 1,
+  "fields": {
+    "name": "Гостиная"
+  }
+},
+{
+  "model": "webapp.room",
+  "pk": 3,
+  "fields": {
+    "name": "Кабинет"
+  }
+},
+{
+  "model": "webapp.room",
+  "pk": 4,
+  "fields": {
+    "name": "Коридор"
+  }
+},
+{
+  "model": "webapp.room",
+  "pk": 5,
+  "fields": {
+    "name": "Кухня"
+  }
+},
+{
+  "model": "webapp.room",
+  "pk": 6,
+  "fields": {
+    "name": "Спальня"
+  }
+},
+{
+  "model": "webapp.room",
+  "pk": 7,
+  "fields": {
+    "name": "Столовая"
+  }
+},
+{
+  "model": "webapp.room",
+  "pk": 8,
+  "fields": {
+    "name": "Ванная"
+  }
+},
+{
+  "model": "webapp.room",
+  "pk": 9,
+  "fields": {
+    "name": "Детские"
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 1,
+  "fields": {
+    "name": "Подвесные",
+    "rooms": [
+      8
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 2,
+  "fields": {
+    "name": "Стоячее",
+    "rooms": [
+      8
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 3,
+  "fields": {
+    "name": "Диваны",
+    "rooms": [
+      1
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 4,
+  "fields": {
+    "name": "Кресла",
+    "rooms": [
+      1
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 5,
+  "fields": {
+    "name": "Стеллаж",
+    "rooms": [
+      1
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 6,
+  "fields": {
+    "name": "Столы",
+    "rooms": [
+      1
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 7,
+  "fields": {
+    "name": "Гардеробы и шкафы",
+    "rooms": [
+      9
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 8,
+  "fields": {
+    "name": "Кровати",
+    "rooms": [
+      9
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 9,
+  "fields": {
+    "name": "Стеллажи",
+    "rooms": [
+      9
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 10,
+  "fields": {
+    "name": "Столы",
+    "rooms": [
+      9
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 11,
+  "fields": {
+    "name": "Стулья",
+    "rooms": [
+      9
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 12,
+  "fields": {
+    "name": "Кресла",
+    "rooms": [
+      3
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 13,
+  "fields": {
+    "name": "Письменные столы",
+    "rooms": [
+      3
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 14,
+  "fields": {
+    "name": "Склад",
+    "rooms": [
+      3
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 15,
+  "fields": {
+    "name": "Шкафы",
+    "rooms": [
+      4
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 16,
+  "fields": {
+    "name": "Гардероб",
+    "rooms": [
+      4
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 17,
+  "fields": {
+    "name": "Столы",
+    "rooms": [
+      4
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 18,
+  "fields": {
+    "name": "Вешалки",
+    "rooms": [
+      4
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 19,
+  "fields": {
+    "name": "диваны",
+    "rooms": [
+      4
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 20,
+  "fields": {
+    "name": "Другое",
+    "rooms": [
+      5
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 21,
+  "fields": {
+    "name": "Кухонные гарнитуры",
+    "rooms": [
+      5
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 22,
+  "fields": {
+    "name": "Напольные шкафы",
+    "rooms": [
+      5
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 23,
+  "fields": {
+    "name": "Подвесные кухонные гарнитуры",
+    "rooms": [
+      5
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 24,
+  "fields": {
+    "name": "Подвесные шкафы",
+    "rooms": [
+      5
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 25,
+  "fields": {
+    "name": "Функциональные шкафы",
+    "rooms": [
+      5
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 26,
+  "fields": {
+    "name": "Электроника",
+    "rooms": [
+      5
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 27,
+  "fields": {
+    "name": "Гардеробы",
+    "rooms": [
+      6
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 28,
+  "fields": {
+    "name": "Кровати",
+    "rooms": [
+      6
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 29,
+  "fields": {
+    "name": "Прикроватные шкафчики",
+    "rooms": [
+      6
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 30,
+  "fields": {
+    "name": "Туалетные столики",
+    "rooms": [
+      6
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 31,
+  "fields": {
+    "name": "Стулья",
+    "rooms": [
+      7
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 32,
+  "fields": {
+    "name": "Столы",
+    "rooms": [
+      7
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 33,
+  "fields": {
+    "name": "Барные стулья",
+    "rooms": [
+      7
+    ]
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$XBtdhZMgNCOxBttXBilxZE$2Tj+EVxKDbY8wt1NfaChdNjkOuTutn3X844oX62WW+Q=",
+    "last_login": "2024-04-09T07:14:37.806Z",
+    "is_superuser": true,
+    "username": "beknazar",
+    "first_name": "",
+    "last_name": "",
+    "email": "680633@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2024-04-09T07:14:15.123Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]
