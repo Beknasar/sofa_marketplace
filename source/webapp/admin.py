@@ -18,26 +18,7 @@ class ParentCategoryFilter(admin.SimpleListFilter):
     def queryset(self, request, queryset):
         if self.value():
             return queryset.filter(parent__name=self.value())
-#
-# # SubCategoryFilter:
-# # Фильтр для подкатегорий, который отображает только те подкатегории,
-# # которые соответствуют выбранной родительской категории.
-# # Это достигается путем проверки текущего значения parent_category в URL-параметрах.
-# class SubCategoryFilter(admin.SimpleListFilter):
-#     title = _('Подкатегория')
-#     parameter_name = 'subcategory'
-#
-#     def lookups(self, request, model_admin):
-#         parent_name = request.GET.get('parent_category')
-#         if parent_name:
-#             subcategories = set(model_admin.model.objects.filter(parent__name=parent_name).values_list('name', flat=True))
-#             return [(sub, sub) for sub in subcategories]
-#         return []
-#
-#     def queryset(self, request, queryset):
-#         if self.value():
-#             return queryset.filter(name=self.value())
-#
+
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['pk', 'room', 'name', 'parent']
