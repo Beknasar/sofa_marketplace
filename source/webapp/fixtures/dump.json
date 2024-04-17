@@ -57,32 +57,10 @@
 },
 {
   "model": "webapp.category",
-  "pk": 1,
-  "fields": {
-    "name": "Подвесные",
-    "rooms": [
-      8
-    ]
-  }
-},
-{
-  "model": "webapp.category",
-  "pk": 2,
-  "fields": {
-    "name": "Стоячее",
-    "rooms": [
-      8
-    ]
-  }
-},
-{
-  "model": "webapp.category",
   "pk": 3,
   "fields": {
     "name": "Диваны",
-    "rooms": [
-      1
-    ]
+    "room": 1
   }
 },
 {
@@ -90,9 +68,7 @@
   "pk": 4,
   "fields": {
     "name": "Кресла",
-    "rooms": [
-      1
-    ]
+    "room": 1
   }
 },
 {
@@ -100,9 +76,7 @@
   "pk": 5,
   "fields": {
     "name": "Стеллаж",
-    "rooms": [
-      1
-    ]
+    "room": 1
   }
 },
 {
@@ -110,9 +84,7 @@
   "pk": 6,
   "fields": {
     "name": "Столы",
-    "rooms": [
-      1
-    ]
+    "room": 1
   }
 },
 {
@@ -120,9 +92,7 @@
   "pk": 7,
   "fields": {
     "name": "Гардеробы и шкафы",
-    "rooms": [
-      9
-    ]
+    "room": 9
   }
 },
 {
@@ -130,9 +100,7 @@
   "pk": 8,
   "fields": {
     "name": "Кровати",
-    "rooms": [
-      9
-    ]
+    "room": 9
   }
 },
 {
@@ -140,9 +108,7 @@
   "pk": 9,
   "fields": {
     "name": "Стеллажи",
-    "rooms": [
-      9
-    ]
+    "room": 9
   }
 },
 {
@@ -150,9 +116,7 @@
   "pk": 10,
   "fields": {
     "name": "Столы",
-    "rooms": [
-      9
-    ]
+    "room": 9
   }
 },
 {
@@ -160,9 +124,7 @@
   "pk": 11,
   "fields": {
     "name": "Стулья",
-    "rooms": [
-      9
-    ]
+    "room": 9
   }
 },
 {
@@ -170,9 +132,7 @@
   "pk": 12,
   "fields": {
     "name": "Кресла",
-    "rooms": [
-      3
-    ]
+    "room": 3
   }
 },
 {
@@ -180,9 +140,7 @@
   "pk": 13,
   "fields": {
     "name": "Письменные столы",
-    "rooms": [
-      3
-    ]
+    "room": 3
   }
 },
 {
@@ -190,9 +148,7 @@
   "pk": 14,
   "fields": {
     "name": "Склад",
-    "rooms": [
-      3
-    ]
+    "room": 3
   }
 },
 {
@@ -200,9 +156,7 @@
   "pk": 15,
   "fields": {
     "name": "Шкафы",
-    "rooms": [
-      4
-    ]
+    "room": 4
   }
 },
 {
@@ -210,9 +164,7 @@
   "pk": 16,
   "fields": {
     "name": "Гардероб",
-    "rooms": [
-      4
-    ]
+    "room": 4
   }
 },
 {
@@ -220,9 +172,7 @@
   "pk": 17,
   "fields": {
     "name": "Столы",
-    "rooms": [
-      4
-    ]
+    "room": 4
   }
 },
 {
@@ -230,9 +180,7 @@
   "pk": 18,
   "fields": {
     "name": "Вешалки",
-    "rooms": [
-      4
-    ]
+    "room": 4
   }
 },
 {
@@ -240,9 +188,7 @@
   "pk": 19,
   "fields": {
     "name": "диваны",
-    "rooms": [
-      4
-    ]
+    "room": 4
   }
 },
 {
@@ -250,9 +196,7 @@
   "pk": 20,
   "fields": {
     "name": "Другое",
-    "rooms": [
-      5
-    ]
+    "room": 5
   }
 },
 {
@@ -260,9 +204,7 @@
   "pk": 21,
   "fields": {
     "name": "Кухонные гарнитуры",
-    "rooms": [
-      5
-    ]
+    "room": 5
   }
 },
 {
@@ -270,9 +212,7 @@
   "pk": 22,
   "fields": {
     "name": "Напольные шкафы",
-    "rooms": [
-      5
-    ]
+    "room": 5
   }
 },
 {
@@ -280,9 +220,7 @@
   "pk": 23,
   "fields": {
     "name": "Подвесные кухонные гарнитуры",
-    "rooms": [
-      5
-    ]
+    "room": 5
   }
 },
 {
@@ -290,9 +228,7 @@
   "pk": 24,
   "fields": {
     "name": "Подвесные шкафы",
-    "rooms": [
-      5
-    ]
+    "room": 5
   }
 },
 {
@@ -300,9 +236,7 @@
   "pk": 25,
   "fields": {
     "name": "Функциональные шкафы",
-    "rooms": [
-      5
-    ]
+    "room": 5
   }
 },
 {
@@ -310,9 +244,7 @@
   "pk": 26,
   "fields": {
     "name": "Электроника",
-    "rooms": [
-      5
-    ]
+    "room": 5
   }
 },
 {
@@ -320,9 +252,7 @@
   "pk": 27,
   "fields": {
     "name": "Гардеробы",
-    "rooms": [
-      6
-    ]
+    "room": 6
   }
 },
 {
@@ -330,9 +260,7 @@
   "pk": 28,
   "fields": {
     "name": "Кровати",
-    "rooms": [
-      6
-    ]
+    "room": 6
   }
 },
 {
@@ -340,9 +268,7 @@
   "pk": 29,
   "fields": {
     "name": "Прикроватные шкафчики",
-    "rooms": [
-      6
-    ]
+    "room": 6
   }
 },
 {
@@ -350,9 +276,7 @@
   "pk": 30,
   "fields": {
     "name": "Туалетные столики",
-    "rooms": [
-      6
-    ]
+    "room": 6
   }
 },
 {
@@ -360,9 +284,7 @@
   "pk": 31,
   "fields": {
     "name": "Стулья",
-    "rooms": [
-      7
-    ]
+    "room": 7
   }
 },
 {
@@ -370,9 +292,7 @@
   "pk": 32,
   "fields": {
     "name": "Столы",
-    "rooms": [
-      7
-    ]
+    "room": 7
   }
 },
 {
@@ -380,17 +300,15 @@
   "pk": 33,
   "fields": {
     "name": "Барные стулья",
-    "rooms": [
-      7
-    ]
+    "room": 7
   }
 },
 {
   "model": "auth.user",
   "pk": 1,
   "fields": {
-    "password": "pbkdf2_sha256$600000$XBtdhZMgNCOxBttXBilxZE$2Tj+EVxKDbY8wt1NfaChdNjkOuTutn3X844oX62WW+Q=",
-    "last_login": "2024-04-09T07:14:37.806Z",
+    "password": "pbkdf2_sha256$600000$W6RJZImy30BtXcNeb32sJF$HMjjXgCqxcZY7b3MOojr6G70MU8amTiukLrM5xpV628=",
+    "last_login": "2024-04-17T18:02:46.357Z",
     "is_superuser": true,
     "username": "beknazar",
     "first_name": "",

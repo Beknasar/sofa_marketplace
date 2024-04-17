@@ -1,5 +1,6 @@
 from django.db import models
 from smart_selects.db_fields import ChainedForeignKey
+from django.core.validators import MinValueValidator
 
 
 class Room(models.Model):
@@ -14,20 +15,10 @@ class Room(models.Model):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=50, null=False, blank=False, verbose_name='Название категории мебели')
+    name = models.CharField(max_length=50, null=False, blank=False,
+                            verbose_name='Название категории мебели')
     room = models.ForeignKey('webapp.Room', on_delete=models.CASCADE,
-                               verbose_name='Категории мебели', related_name='categories')
-    parent = ChainedForeignKey(
-        'self',  # Ссылка на экземпляр того же класса
-        on_delete=models.CASCADE,  # При удалении родителя удалять все дочерние элементы
-        related_name='children',  # Имя для обратной связи
-        null=True,  # Разрешить пустые значения для верхнего уровня категорий
-        blank=True,  # Разрешить оставлять это поле пустым при заполнении форм
-        verbose_name="Родительская категория",  # Человеко-понятное имя в админке
-        chained_field='room',
-        chained_model_field='room',
-        show_all=False,
-    )
+                             verbose_name='Комната', related_name='categories')
 
     def __str__(self):
         return self.name
@@ -36,3 +27,26 @@ class Category(models.Model):
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
 
+
+class Product(models.Model):
+    room = models.ForeignKey('webapp.Room', on_delete=models.CASCADE, related_name='products', default=1)
+    category = ChainedForeignKey(
+        Category,  # Модель, на которую указывает ключ
+        chained_field="room",  # Поле в текущей модели, которое влияет на выбор в связанном поле
+        chained_model_field="room",  # Поле в связываемой модели, которое фильтруется по значению chained_field
+        show_all=False,  # Показывать ли все объекты, когда значение chained_field не выбрано
+        auto_choose=True,  # Автоматически выбирать элемент, если он единственный доступный
+        sort=True  # Сортировать ли доступные значения в выпадающем списке
+    )
+    name = models.CharField(max_length=100, null=False, blank=False, verbose_name='Название')
+    description = models.TextField(max_length=2000, null=True, blank=True, verbose_name='Описание')
+    amount = models.IntegerField(verbose_name="Остаток", validators=(MinValueValidator(0),))
+    price = models.DecimalField(verbose_name='Цена', max_digits=7, decimal_places=2, validators=(MinValueValidator(0),))
+    picture = models.ImageField(null=True, blank=True, upload_to='product_pics', verbose_name='Изображение')
+
+    def __str__(self):
+        return f'{self.name} - {self.amount}'
+
+    class Meta:
+        verbose_name = 'Товар'
+        verbose_name_plural = 'Товары'
