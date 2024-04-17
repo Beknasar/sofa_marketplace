@@ -21,7 +21,7 @@ class Category(models.Model):
                              verbose_name='Комната', related_name='categories')
 
     def __str__(self):
-        return self.name
+        return f'{self.room.name} --- {self.name}'
 
     class Meta:
         verbose_name = 'Категория'
