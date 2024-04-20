@@ -3,56 +3,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{% block title %}My Site{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-{#     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">#}
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>SofaShop</title>
+	<link rel="shortcut icon" href="{% static 'img/sofa.ico' %}" type="image/x-icon">
+	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+	<link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+	<link href="https://fonts.googleapis.com/css?family=Istok+Web&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
     {% block styles %}{% endblock %}
 </head>
 <body>
-<nav class="navbar">
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top py-md-0 ">
     <div class="container">
-        <ul class="menu">
-            <li><a href="{% url 'webapp:index' %}">Home <i class="fas fa-home"></i></a></li>
-             <li><a href="{% url "webapp:basket_view" %}">Basket<i class="fas fa-shopping-basket"></i></a></li>
+        <a class="navbar-brand mr-md-5 align-self-start m-2 text-center text-white" href="{% url 'webapp:index' %}"><i class="fas fa-couch"></i>SofaShop</a>
 
-            {% if request.user.is_authenticated %}
-{#                {% if perms.webapp.change_ and request.user.groups.all or request.user.pk == 1 %}#}
-
-{#                {% endif %}#}
-                    <li><a href="{% url 'accounts:detail' request.user.pk %}">Привет, {{ request.user.get_full_name|default:request.user.username }}</a></li>
-                    {% if perms.webapp.add_product %}
-                        <li><a href="{% url 'accounts:list' %}">User list</a></li>
-                        <li><a href="{% url 'webapp:product_create' %}">Add Product <i class="fas fa-plus-circle"></i></a></li>
-                    {% endif %}
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto ml-md-5">
                 {% block menu %}{% endblock %}
-            {% endif %}
-            {% block auth_menu %}
-                {% if request.user.is_authenticated %}
-                    <li><a href="{% url 'accounts:logout' %}?next={{ request.get_full_path }}">Logout</a></li>
-                {% else %}
-                    <li><a href="{% url 'accounts:login' %}?next={{ request.get_full_path }}">Login</a></li>
-                    <li><a href="{% url 'accounts:create' %}?next={{ request.get_full_path }}">Sign Up</a></li>
-                {% endif %}
-            {% endblock %}
-
-            <li>
-                <form action="{% url 'webapp:index' %}" method="GET">
-                    <input type="text" name="search">
-                    <input type="submit" value="Найти">
-                </form>
-            </li>
-        </ul>
+            </ul>
+            <form action="{% url 'webapp:index' %}" class="form-inline mr-5 my-lg-0" method="GET">
+                          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="search">
+                          <button class="btn btn-secondary my-2 my-sm-0" style="background: #4B0082;" type="submit">Найти</button>
+                    </form>
+            <a href="#myModal" data-toggle="modal" class="far fa-user text-light register-icon my-3  my-md-0 d-none d-md-inline-block"></a>
+        </div>
     </div>
 </nav>
-
+{% block promo %}{% endblock %}
+<br>
 <div class="container">
     {% block content %}{% endblock %}
 </div>
 </body>
-{#    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>#}
-{#    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous"></script>#}
+<footer class="footer inner-shadow ">
+    <div class="container mt-5 ">
+        <br>
+        <p class="mt-3">Copyright © All Rights Reserved. <a href="SofaShop.com ">SofaShop.com &thinsp; </a> - &nbsp; &nbsp; &nbsp; <a href="SofaShop@gmail.com">SofaShop@gmail.com</a></p>
+    </div>
+</footer>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="{% static 'js/bootstrap.bundle.js' %}"></script>
 </html>
