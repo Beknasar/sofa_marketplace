@@ -4,7 +4,20 @@ body{
 	font-size: 13px;
 	font-weight: bold;
 }
+body, html {
+    height: 100%;
+    margin: 0;
+}
 
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content {
+    flex: 1;
+}
 h2{
 	color: #775ba3;
 	font-size: 40px;
@@ -100,7 +113,7 @@ h2{
 	text-align: center;
 	color: #4b3f55;
 }
-.room-block span{
+.room-block-text {
 	color: pink;
 }
 .footer{
@@ -109,13 +122,17 @@ h2{
     color: white;
 }
 
-.footer a, p{
+.footer a, footer p{
 	font-size: 14px;
 	color: white;
 	text-decoration: none;
 }
 .footer a:hover{
 	color: lightblue;
+}
+
+.pre {
+	white-space: pre-wrap;
 }
 
 .pagination {
@@ -158,4 +175,8 @@ h2{
     border-radius: 5px;
     text-align: center;
     border: solid 1px #007bff;
+}
+
+.product_view {
+	color: #4b3f55;
 }

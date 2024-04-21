@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Просмотр{% endblock %}
+
+{% block menu %}{% endblock %}
+
+{% block content %}
+    <div class="row product_view">
+        <div class="col col-12 order-2 order-md-1 col-lg-6">
+            {% if product.picture %}
+                <img src="{{ product.picture }}" class="card-img-top" alt="Photo-1">
+            {% else %}
+                <img src="{% static 'img/pic-1.jpg' %}" class="card-img-top" alt="Photo-1">
+            {% endif %}
+        </div>
+        <div class="col col-12 order-1 order-md-2 col-lg-6">
+        <h1>{{ product.name }}</h1>
+        <p>{{ product.price }} сом</p>
+        <br>
+        <label>Наличие</label>
+        <p>{{ product.get_status_display }}</p>
+        <p>{{ product.amount }}шт</p>
+        <label>Описание</label>
+        <p class="pre">{{ product.description }}</p>
+        </div>
+    </div>
+{% endblock %}
