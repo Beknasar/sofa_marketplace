@@ -15,13 +15,19 @@
         </div>
         <div class="col col-12 order-1 order-md-2 col-lg-6">
         <h1>{{ product.name }}</h1>
-        <p>{{ product.price }} сом</p>
-        <br>
+        <p class="text-black-50">{{ product.category.name }}</p>
+        <h4 class="price">{{ product.price }} сом</h4>
         <label>Наличие</label>
-        <p>{{ product.get_status_display }}</p>
-        <p>{{ product.amount }}шт</p>
+            {% if product.amount > 0 %}
+                <p>{{ product.get_status_display }} - {{ product.amount }}шт</p>
+            {% else %}
+                <p>{{ product.get_status_display }}</p>
+            {% endif %}
+        
         <label>Описание</label>
         <p class="pre">{{ product.description }}</p>
         </div>
     </div>
+    <h5>Возможно вас заинтересуют другие товары из данной категории:</h5>
+    {% include 'partial/product_list.html' with products=related_products %}
 {% endblock %}

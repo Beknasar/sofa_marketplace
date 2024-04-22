@@ -44,6 +44,7 @@ class ProductView(DetailView):
         product = get_object_or_404(Product, pk=pk)
 
         context['product'] = product
+        context['related_products'] = Product.objects.filter(category=product.category).exclude(pk=product.pk)[:4]
         return context
 
     def get_queryset(self):
