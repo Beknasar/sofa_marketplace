@@ -67,6 +67,7 @@ h2{
 {
 	font-size: 23px;
 }
+
 .card-content{
 	font-size: 13px;
 	line-height: 23px;
@@ -182,4 +183,20 @@ h2{
 }
 .price {
 	color: #41B06E;
+}
+
+.card {
+	position: relative;
+}
+.btn-overlay {
+    position: absolute;
+    top: 7%;  /* центрируем кнопку по вертикали */
+    left: 10%; /* центрируем кнопку по горизонтали */
+    transform: translate(-50%, -50%); /* точно центрируем кнопку относительно её размеров */
+    padding: 7px 7px; /* Дополнительное пространство вокруг текста */
+    color: white; /* цвет текста */
+    background: rgba(0, 0, 0, 0.5); /* полупрозрачный черный фон для лучшей видимости */
+    border: none;
+	border-radius: 3px;
+    cursor: pointer; /* делаем видимым, что кнопка кликабельна */
 }
