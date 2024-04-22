@@ -18,7 +18,7 @@
         </a>
         <div class="dropdown-menu">
             {% for room in rooms %}
-                <a class="dropdown-item" href="#">{{ room.name }}</a>
+                <a class="dropdown-item" href="{% url 'webapp:room_products' pk=room.pk %}">{{ room.name }}</a>
             {% endfor %}
         </div>
     </li>

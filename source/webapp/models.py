@@ -43,6 +43,7 @@ class Product(models.Model):
         show_all=False,  # Показывать ли все объекты, когда значение chained_field не выбрано
         auto_choose=True,  # Автоматически выбирать элемент, если он единственный доступный
         sort=True,  # Сортировать ли доступные значения в выпадающем списке
+        related_name='products'
     )
     name = models.CharField(max_length=100, null=False, blank=False, verbose_name='Название')
     description = models.TextField(max_length=2000, null=True, blank=True, verbose_name='Описание')
