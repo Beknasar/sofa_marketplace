@@ -188,15 +188,28 @@ h2{
 .card {
 	position: relative;
 }
+/* Базовые стили кнопки */
 .btn-overlay {
     position: absolute;
-    top: 7%;  /* центрируем кнопку по вертикали */
-    left: 10%; /* центрируем кнопку по горизонтали */
-    transform: translate(-50%, -50%); /* точно центрируем кнопку относительно её размеров */
-    padding: 7px 7px; /* Дополнительное пространство вокруг текста */
-    color: white; /* цвет текста */
-    background: rgba(0, 0, 0, 0.5); /* полупрозрачный черный фон для лучшей видимости */
+    top: 1%;
+    transform: translateX(-50%); /* Изменил на translateX для правильного центрирования по горизонтали */
+    padding: 7px;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
     border: none;
-	border-radius: 3px;
-    cursor: pointer; /* делаем видимым, что кнопка кликабельна */
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* Модификаторы позиционирования */
+.btn-overlay-left-10 {
+    left: 10%;
+}
+
+.btn-overlay-left-27 {
+    left: 27%;
+}
+.picture {
+	width: 400px;
+	height: auto;
 }

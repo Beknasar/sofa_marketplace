@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
-{% load static %}
 {% block title %}Просмотр{% endblock %}
-
+{% load static %}
 {% block menu %}
     <li class="nav-item"><a class="nav-link px-md-3 py-md-2 text-white" href="{% url 'webapp:product_update' pk=product.pk %}">Редактировать</a></li>
+    <li class="nav-item"><a class="nav-link px-md-3 py-md-2 text-white" href="{% url 'webapp:product_delete' pk=product.pk %}">Удалить</a></li>
 {% endblock %}
 
 {% block content %}
     <div class="row product_view">
         <div class="col col-12 order-2 order-md-1 col-lg-6">
             {% if product.picture %}
-                <img src="{{ product.picture }}" class="card-img-top" alt="Photo-1">
+                <img src="{{ product.picture }}" class="card-img-top" alt="Фотография">
             {% else %}
-                <img src="{% static 'img/pic-1.jpg' %}" class="card-img-top" alt="Photo-1">
+                <img src="{% static 'img/empty.png' %}" class="card-img-top" alt="Пустая фотография">
             {% endif %}
         </div>
         <div class="col col-12 order-1 order-md-2 col-lg-6">

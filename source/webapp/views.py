@@ -1,7 +1,7 @@
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
-from django.urls import reverse
-from django.views.generic import ListView, DetailView, UpdateView
+from django.urls import reverse, reverse_lazy
+from django.views.generic import ListView, DetailView, UpdateView, DeleteView
 from webapp.forms import SearchForm, ProductForm
 from webapp.models import Product, Room
 
@@ -60,3 +60,9 @@ class ProductUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse('webapp:product_view', kwargs={'pk': self.object.pk})
+
+
+class ProductDeleteView(DeleteView):
+    template_name = 'product_delete.html'
+    model = Product
+    success_url = reverse_lazy('webapp:index')
