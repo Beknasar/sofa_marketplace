@@ -1,7 +1,8 @@
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
-from django.views.generic import ListView, DetailView
-from webapp.forms import SearchForm
+from django.urls import reverse
+from django.views.generic import ListView, DetailView, UpdateView
+from webapp.forms import SearchForm, ProductForm
 from webapp.models import Product, Room
 
 
@@ -49,3 +50,13 @@ class ProductView(DetailView):
 
     def get_queryset(self):
         return Product.objects.all()
+
+
+class ProductUpdateView(UpdateView):
+    template_name = 'product_update.html'
+    form_class = ProductForm
+    model = Product
+    context_object_name = 'product'
+
+    def get_success_url(self):
+        return reverse('webapp:product_view', kwargs={'pk': self.object.pk})

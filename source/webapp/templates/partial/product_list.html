@@ -14,7 +14,8 @@
                     <div class="mt-auto">
                         <p class="card-text">От {{ product.price }}</p>
                         <p class="card-text">Наличие: {{ product.get_status_display }}</p>
-                        <a href="{% url 'webapp:product_view' product.pk %}" class="btn btn-primary btn-card">MORE</a>
+                        <a href="{% url 'webapp:product_update' product.pk %}" class="btn btn-warning"><i class="far fa-edit"></i></a>
+                        <a href="{% url 'webapp:product_view' product.pk %}" class="btn btn-primary btn-card">Подробнее</a>
                     </div>
                 </div>
             </div>
