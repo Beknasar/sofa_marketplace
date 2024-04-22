@@ -202,12 +202,15 @@ h2{
 }
 
 /* Модификаторы позиционирования */
-.btn-overlay-left-10 {
-    left: 10%;
+.btn-overlay-plus{
+    left: 9%;
 }
 
-.btn-overlay-left-27 {
-    left: 27%;
+.btn-overlay-edit {
+    left: 74%;
+}
+.btn-overlay-delete {
+    left: 91%;
 }
 .picture {
 	width: 400px;
