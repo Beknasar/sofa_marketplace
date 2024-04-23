@@ -4,6 +4,7 @@
 {% block menu %}
     <li class="nav-item"><a class="nav-link px-md-3 py-md-2 text-white" href="{% url 'webapp:product_update' pk=product.pk %}">Редактировать</a></li>
     <li class="nav-item"><a class="nav-link px-md-3 py-md-2 text-white" href="{% url 'webapp:product_delete' pk=product.pk %}">Удалить</a></li>
+    <li class="nav-item"><a class="nav-link px-md-3 py-md-2 text-white" href="{% url 'webapp:basket_view' %}">Корзина</a></li>
 {% endblock %}
 
 {% block content %}
@@ -27,6 +28,7 @@
             {% endif %}
         <label>Описание</label>
         <p class="pre">{{ product.description }}</p>
+        <a href="{% url 'webapp:basket_count' pk=product.pk %}" class="btn btn-success btn-card mb-3">Добавить в корзину</a>
         </div>
     </div>
     <div class="mt-3">

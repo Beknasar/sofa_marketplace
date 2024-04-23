@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Корзина{% endblock %}
+
+{% block content %}
+    <h1>Оформить заказ: </h1>
+        {% for product in basket %}
+            {% if product.amount >= 1 %}
+                <h3>{{ product.product.name }}</h3>
+                <p>Количество: {{ product.product.amount }}шт. <br/>
+                    Цена {{ product.price }} сом за шт.</p>
+            {% endif %}
+        {% endfor %}
+         <h2>Итого: {{ total }} сом</h2>
+{% endblock %}

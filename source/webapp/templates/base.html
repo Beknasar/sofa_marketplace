@@ -23,16 +23,14 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto ml-md-5">
-                    <li class="nav-item">
-                        <a class="nav-link px-md-3 py-md-2 text-white" href="{% url 'webapp:index' %}">На главную <span class="sr-only">(current)</span></a>
-                    </li>
                     {% block menu %}{% endblock %}
                 </ul>
+            
                 <form action="{% url 'webapp:index' %}" class="form-inline mr-5 my-lg-0" method="GET">
-                              <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="search">
-                              <button class="btn btn-secondary my-2 my-sm-0" style="background: #4B0082;" type="submit">Найти</button>
-                        </form>
-                <a href="#myModal" data-toggle="modal" class="far fa-user text-light register-icon my-3  my-md-0 d-none d-md-inline-block"></a>
+                      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="search">
+                      <button class="btn btn-secondary my-2 my-sm-0" style="background: #4B0082;" type="submit">Найти</button>
+                </form>
+{#                <a href="#myModal" data-toggle="modal" class="far fa-user text-light register-icon my-3  my-md-0 d-none d-md-inline-block"></a>#}
             </div>
         </div>
     </nav>
