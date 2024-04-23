@@ -68,6 +68,19 @@ class Product(models.Model):
         verbose_name_plural = 'Товары'
 
 
+class Basket(models.Model):
+    product = models.ForeignKey('webapp.Product', related_name='basket', on_delete=models.PROTECT,
+                                verbose_name='Продукт')
+    amount = models.IntegerField(verbose_name='Количество', validators=[MinValueValidator(0),])
+
+    def __str__(self):
+        return '{} - {}'.format(self.product.name, self.amount)
+
+    class Meta:
+        verbose_name = 'Корзина'
+        verbose_name_plural = 'Корзины'
+
+
 class Order(models.Model):
     products = models.ManyToManyField('webapp.Product',
                                       through='webapp.OrderProduct',
