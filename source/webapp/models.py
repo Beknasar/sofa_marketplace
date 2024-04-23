@@ -88,7 +88,7 @@ class Order(models.Model):
 
 class OrderProduct(models.Model):
     product = models.ForeignKey('webapp.Product',
-                                related_name='order_entries',  # все записи заказов, в которых учавствует данный продукт
+                                related_name='order_entries',  # все записи заказов, в которых участвует данный продукт
                                 on_delete=models.CASCADE,
                                 verbose_name='Продукт')
     amount = models.IntegerField(verbose_name='Количество', validators=[MinValueValidator(0)])

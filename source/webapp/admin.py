@@ -1,5 +1,5 @@
 from django.contrib import admin
-from webapp.models import Category, Room, Product
+from webapp.models import Category, Room, Product, Order
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -21,6 +21,12 @@ class RoomAdmin(admin.ModelAdmin):
     list_display = ['pk', 'name']
 
 
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ['pk', 'name', 'phone', 'date_create']
+    ordering = ['-date_create']
+
+
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Room, RoomAdmin)
+admin.site.register(Order, OrderAdmin)
