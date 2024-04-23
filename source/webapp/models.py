@@ -66,3 +66,18 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
+
+
+class Order(models.Model):
+    products = models.ManyToManyField('webapp.Product', related_name='orders', blank=True, verbose_name='Продукты')
+    name = models.CharField(max_length=100, verbose_name='Имя')
+    phone = models.CharField(max_length=20, verbose_name='Телефон')
+    address = models.CharField(max_length=100, verbose_name='Адрес')
+    date_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата и время создания')
+
+    def __str__(self):
+        return f'{self.name} - {self.phone}'
+
+    class Meta:
+        verbose_name = 'Заказ'
+        verbose_name_plural = 'Заказы'
