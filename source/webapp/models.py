@@ -69,7 +69,10 @@ class Product(models.Model):
 
 
 class Order(models.Model):
-    products = models.ManyToManyField('webapp.Product', related_name='orders', blank=True, verbose_name='Продукты')
+    products = models.ManyToManyField('webapp.Product',
+                                      through='webapp.OrderProduct',
+                                      through_fields=['order', 'product'],
+                                      related_name='orders', blank=True, verbose_name='Продукты')
     name = models.CharField(max_length=100, verbose_name='Имя')
     phone = models.CharField(max_length=20, verbose_name='Телефон')
     address = models.CharField(max_length=100, verbose_name='Адрес')
@@ -81,3 +84,18 @@ class Order(models.Model):
     class Meta:
         verbose_name = 'Заказ'
         verbose_name_plural = 'Заказы'
+
+
+class OrderProduct(models.Model):
+    product = models.ForeignKey('webapp.Product',
+                                related_name='order_entries',  # все записи заказов, в которых учавствует данный продукт
+                                on_delete=models.CASCADE,
+                                verbose_name='Продукт')
+    amount = models.IntegerField(verbose_name='Количество', validators=[MinValueValidator(0)])
+    order = models.ForeignKey('webapp.Order',
+                              related_name='order_products',  # все продукты в заказе
+                              on_delete=models.CASCADE, verbose_name='Заказ'
+                              )
+
+    def __str__(self):
+        return f'{self.pk}: {self.amount} units of {self.product.name}'
