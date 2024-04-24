@@ -5,7 +5,9 @@ from webapp.models import Product, Basket
 
 class BasketDeleteView(View):
     def post(self, request, *args, **kwargs):
-        pk = kwargs.get('pk')
+        pk = self.kwargs.get('pk')
+        print(pk)
+        print(Basket.objects.get(product_id=pk))
         product_from_basket = Basket.objects.get(product_id=pk)
         product_from_basket.delete()
         return redirect('webapp:basket_view')
@@ -36,7 +38,8 @@ class BasketCountView(View):
 
 
 class BasketView(TemplateView):
-    template_name = 'templates/basket_view.html'
+    template_name = 'basket_view.html'
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         total = 0

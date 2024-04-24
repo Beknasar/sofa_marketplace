@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from .views import (IndexView, ProductView, ProductUpdateView, ProductDeleteView, ProductCreateView,
+from webapp.views import (IndexView, ProductView, ProductUpdateView, ProductDeleteView, ProductCreateView,
                     RoomProductsView, BasketView, BasketCountView, BasketDeleteView)
 
 app_name = 'webapp'

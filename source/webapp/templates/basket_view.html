@@ -4,10 +4,15 @@
 {% block content %}
     <h1>Оформить заказ: </h1>
         {% if basket %}
-            {% for product in basket %}
-                {% if product.amount >= 1 %}
-                    <h3>{{ product.product.name }}  <a href="{% url 'webapp:basket_delete' pk=product.pk %}"><i class="far fa-trash-alt trash-can"></i></a></h3>
-                    <p>Количество: {{ product.product.amount }}шт. <br/>
+            {% for item in basket %}
+                {% if item.amount >= 1 %}
+{#                    <h3>{{ item.product.name }}  <a href="{% url 'webapp:basket_delete' pk=item.product.pk %}"><i class="far fa-trash-alt trash-can"></i></a></h3>#}
+                    <h3>{{ item.product.name }}<form action="{% url 'webapp:basket_delete' pk=item.product.pk %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="product_id" value="{{ item.pk }}">
+                            <button type="submit">Удалить из корзины</button>
+                        </form></h3>
+                    <p>Количество: {{ product.amount }}шт. <br/>
                         Цена {{ product.price }} сом за шт.</p>
                 {% endif %}
             {% endfor %}
