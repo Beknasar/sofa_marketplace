@@ -1,13 +1,11 @@
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic.base import View, TemplateView
 from webapp.models import Product, Basket
-
+from django.views.generic import FormView
 
 class BasketDeleteView(View):
     def post(self, request, *args, **kwargs):
         pk = self.kwargs.get('pk')
-        print(pk)
-        print(Basket.objects.get(product_id=pk))
         product_from_basket = Basket.objects.get(product_id=pk)
         product_from_basket.delete()
         return redirect('webapp:basket_view')
@@ -37,7 +35,7 @@ class BasketCountView(View):
         return redirect('webapp:index')
 
 
-class BasketView(TemplateView):
+class BasketOrderView(TemplateView):
     template_name = 'basket_view.html'
 
     def get_context_data(self, **kwargs):

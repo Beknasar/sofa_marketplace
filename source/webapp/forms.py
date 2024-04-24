@@ -1,5 +1,5 @@
 from django import forms
-from .models import Product
+from .models import Product, Order
 
 
 class SearchForm(forms.Form):
@@ -10,3 +10,10 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         exclude = []
+
+
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ['name', 'address', 'phone']
+        widgets = {'phone': forms.NumberInput, 'address': forms.EmailInput}

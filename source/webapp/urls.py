@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from webapp.views import (IndexView, ProductView, ProductUpdateView, ProductDeleteView, ProductCreateView,
-                    RoomProductsView, BasketView, BasketCountView, BasketDeleteView)
+                          RoomProductsView, BasketOrderView, BasketCountView, BasketDeleteView)
 
 app_name = 'webapp'
 
@@ -14,6 +14,6 @@ urlpatterns = [
 
     path('rooms/<int:pk>/products/', RoomProductsView.as_view(), name='room_products'),
     path('basket/product/<int:pk>/', BasketCountView.as_view(), name='basket_count'),
-    path('basket/', BasketView.as_view(), name='basket_view'),
+    path('basket/', BasketOrderView.as_view(), name='basket_view'),
     path('basket/<int:pk>/', BasketDeleteView.as_view(), name='basket_delete')
 ]
