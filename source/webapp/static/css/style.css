@@ -217,3 +217,10 @@ h2{
 	width: 400px;
 	height: auto;
 }
+.trash-can{
+	color: #775ba3;
+
+}
+.trash-can:hover {
+	color: #8f6bc9;
+}
