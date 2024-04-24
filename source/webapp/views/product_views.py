@@ -1,14 +1,13 @@
 from django.db.models import Q
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
-from django.views.generic.base import View, TemplateView
 from webapp.forms import SearchForm, ProductForm
-from webapp.models import Product, Room, Basket
+from webapp.models import Product, Room
 
 
 class IndexView(ListView):
-    template_name = 'index.html'
+    template_name = 'products/index.html'
     context_object_name = 'products'
     paginate_by = 8
     paginate_orphans = 0
@@ -37,7 +36,7 @@ class IndexView(ListView):
 
 
 class ProductView(DetailView):
-    template_name = 'product_view.html'
+    template_name = 'products/product_view.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -54,7 +53,7 @@ class ProductView(DetailView):
 
 
 class ProductUpdateView(UpdateView):
-    template_name = 'product_update.html'
+    template_name = 'products/product_update.html'
     form_class = ProductForm
     model = Product
     context_object_name = 'product'
@@ -64,13 +63,13 @@ class ProductUpdateView(UpdateView):
 
 
 class ProductDeleteView(DeleteView):
-    template_name = 'product_delete.html'
+    template_name = 'products/product_delete.html'
     model = Product
     success_url = reverse_lazy('webapp:index')
 
 
 class ProductCreateView(CreateView):
-    template_name = 'product_create.html'
+    template_name = 'products/product_create.html'
     form_class = ProductForm
     model = Product
 
@@ -79,7 +78,7 @@ class ProductCreateView(CreateView):
 
 
 class RoomProductsView(ListView):
-    template_name = 'room_product.html'
+    template_name = 'products/room_product.html'
     context_object_name = 'products'
     paginate_by = 8
     paginate_orphans = 0
@@ -103,46 +102,4 @@ class RoomProductsView(ListView):
         return context
 
 
-class BasketDeleteView(View):
-    def post(self, request, *args, **kwargs):
-        pk = kwargs.get('pk')
-        product_from_basket = Basket.objects.get(product_id=pk)
-        product_from_basket.delete()
-        return redirect('webapp:basket_view')
 
-
-class BasketCountView(View):
-    def get(self, request, *args, **kwargs):
-        pk = self.kwargs.get('pk')
-        product = get_object_or_404(Product, pk=pk)
-
-        try:
-            basket_product = Basket.objects.get(product__pk=product.pk)
-        except Basket.DoesNotExist:
-            basket_product = None
-        if basket_product:
-            if basket_product.amount <= product.amount:
-                basket_product.amount += 1
-            basket_product.save()
-        elif basket_product is None:
-            if product.amount > 0:
-                basket_product = Basket.objects.create(
-                    product=product,
-                    amount=1
-                )
-                basket_product.save()
-
-        return redirect('webapp:index')
-
-
-class BasketView(TemplateView):
-    template_name = 'basket_view.html'
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        total = 0
-        for item in Basket.objects.all():
-            total += item.product.price * item.amount
-
-        context['basket'] = Basket.objects.all().distinct()
-        context['total'] = total
-        return context
