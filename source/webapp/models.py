@@ -89,6 +89,7 @@ class Order(models.Model):
     name = models.CharField(max_length=100, verbose_name='Имя')
     phone = models.CharField(max_length=20, verbose_name='Телефон')
     address = models.CharField(max_length=100, verbose_name='Адрес')
+    comment = models.TextField(max_length=500, verbose_name='Комментарий', blank=True, null=True)
     date_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата и время создания')
 
     def __str__(self):

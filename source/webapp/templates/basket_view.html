@@ -6,7 +6,6 @@
         {% if basket %}
             {% for item in basket %}
                 {% if item.amount >= 1 %}
-{#                    <h3>{{ item.product.name }}  <a href="{% url 'webapp:basket_delete' pk=item.product.pk %}"><i class="far fa-trash-alt trash-can"></i></a></h3>#}
                     <h3>{{ item.product.name }}<form action="{% url 'webapp:basket_delete' pk=item.product.pk %}" method="post">
                             {% csrf_token %}
                             <input type="hidden" name="product_id" value="{{ item.pk }}">
@@ -19,5 +18,11 @@
         {% else %}
             <p>Пусто</p>
         {% endif %}
+        <hr>
          <h2>Итого: {{ total }} сом</h2>
+        {% if basket %}
+            <h3>Оформление:</h3>
+            {% url 'webapp:basket_view' as action_url %}
+            {% include 'partial/form.html' with action_url=action_url form_method='post' %}
+        {% endif %}
 {% endblock %}
