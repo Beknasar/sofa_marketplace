@@ -4,38 +4,29 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
 from webapp.forms import SearchForm, ProductForm
 from webapp.models import Product, Room
+from .base_views import SearchView
 
 
-class IndexView(ListView):
+class IndexView(SearchView):
+    model = Product
     template_name = 'products/index.html'
-    context_object_name = 'products'
+    ordering = ['-room', 'name']
+    search_fields = ['name_icontains']
     paginate_by = 8
-    paginate_orphans = 0
-    ordering = ['-room']
+    context_object_name = 'products'
 
-    def get_context_data(self, *, object_list=None, **kwargs):
-        form = SearchForm(data=self.request.GET)
-        if form.is_valid():
-            search = form.cleaned_data['search']
-            kwargs['search'] = search
-        kwargs['form'] = form
-
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
         rooms = Room.objects.all()
-        kwargs['rooms'] = rooms
-        return super().get_context_data(object_list=object_list, **kwargs)
+        context['rooms'] = rooms
+        return context
 
     def get_queryset(self):
-        data = Product.objects.all()
-
-        form = SearchForm(data=self.request.GET)
-        if form.is_valid():
-            search = form.cleaned_data['search']
-            if search:
-                data = data.filter(Q(name__icontains=search) | Q(description__icontains=search))
-        return data
+        return super().get_queryset()
 
 
 class ProductView(DetailView):
+    model = Product
     template_name = 'products/product_view.html'
 
     def get_context_data(self, **kwargs):
@@ -49,7 +40,7 @@ class ProductView(DetailView):
         return context
 
     def get_queryset(self):
-        return Product.objects.all()
+        return super().get_queryset()
 
 
 class ProductUpdateView(UpdateView):
