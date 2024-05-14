@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}Корзина{% endblock %}
+
+{% block content %}
+{#    <h1>Оформить заказ: </h1>#}
+{#        {% if basket %}#}
+{#            {% for item in basket %}#}
+{#                {% if item.amount >= 1 %}#}
+{#                    <h3>{{ item.product.name }}<form action="{% url 'webapp:basket_delete' pk=item.product.pk %}" method="post">#}
+{#                            {% csrf_token %}#}
+{#                            <input type="hidden" name="product_id" value="{{ item.pk }}">#}
+{#                            <button type="submit">Удалить из корзины</button>#}
+{#                        </form></h3>#}
+{#                    <p>Количество: {{ product.amount }}шт. <br/>#}
+{#                        Цена {{ product.price }} сом за шт.</p>#}
+{#                {% endif %}#}
+{#            {% endfor %}#}
+{#        {% else %}#}
+{#            <p>Пусто</p>#}
+{#        {% endif %}#}
+{#        <hr>#}
+{#         <h2>Итого: {{ total }} сом</h2>#}
+        <table class="cart-table" align="center">
+        <thead>
+            <tr>
+                <th>Товар</th>
+                <th>Наличие</th>
+                <th>Цена</th>
+                <th>Количество</th>
+                <th>Итого</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in basket %}
+                <tr>
+                    <td>
+                        <a href="{% url 'webapp:product_view' pk=item.product.pk %}">{{ item.product.name }}</a>
+                        (<a href="{% url 'webapp:basket_delete_one' item.pk %}">Удалить Один</a>,
+                        <a href="{% url 'webapp:basket_delete' item.pk %}">Удалить Все</a>)
+                    </td>
+                    <td class="text-right">{{ item.product.get_status_display }}</td>
+                    <td class="text-right">{{ item.product.price }}</td>
+                    <td class="text-right">{{ item.amount }}</td>
+{#                    <td class="text-right">{{ item.get_total }}</td> #}
+{#                    при запросе с annotate #}
+                    <td>{{ item.total }}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <th colspan="4" class="text-right">Итого</th>
+                <th class="text-right">{{ cart_total }}</th>
+            </tr>
+        </tbody>
+    </table>
+        <div style="text-align: center">
+            {% if basket %}
+                <h3>Оформление:</h3>
+                {% url 'webapp:order_create' as action_url %}
+                {% include 'partial/form.html' with action_url=action_url form_method='post' button_text='Оформить заказ' %}
+            {% endif %}
+        </div>
+{% endblock %}

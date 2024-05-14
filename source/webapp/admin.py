@@ -1,5 +1,5 @@
 from django.contrib import admin
-from webapp.models import Category, Room, Product, Order
+from webapp.models import Category, Room, Product, Order, OrderProduct, Basket
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -21,8 +21,16 @@ class RoomAdmin(admin.ModelAdmin):
     list_display = ['pk', 'name']
 
 
+class OrderProductAdmin(admin.TabularInline):
+    model = OrderProduct
+    fields = ('product', 'amount')
+    extra = 0
+
+
 class OrderAdmin(admin.ModelAdmin):
     list_display = ['pk', 'name', 'phone', 'date_create']
+    list_display_links = ('pk', 'name')
+    inlines = (OrderProductAdmin,)
     ordering = ['-date_create']
 
 

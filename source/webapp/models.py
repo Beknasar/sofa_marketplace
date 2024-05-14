@@ -1,3 +1,5 @@
+from django.db.models import Sum, F, ExpressionWrapper as E
+
 from django.db import models
 from smart_selects.db_fields import ChainedForeignKey
 from django.core.validators import MinValueValidator
@@ -69,9 +71,29 @@ class Product(models.Model):
 
 
 class Basket(models.Model):
-    product = models.ForeignKey('webapp.Product', related_name='basket', on_delete=models.PROTECT,
+    product = models.ForeignKey('webapp.Product', related_name='basket', on_delete=models.CASCADE,
                                 verbose_name='Продукт')
     amount = models.IntegerField(verbose_name='Количество', validators=[MinValueValidator(0),])
+
+    @classmethod
+    def get_with_total(cls):
+        # запрос так быстрее
+        total_output_field = models.DecimalField(max_digits=10, decimal_places=2)
+        total_exp = E(F('amount') * F('product__price'), output_field=total_output_field)
+        return cls.objects.annotate(total=total_exp)
+
+    @classmethod
+    def get_with_product(cls):
+        return cls.get_with_total().select_related('product')
+
+    @classmethod
+    def get_basket_total(cls, ids=None):
+        # запрос так быстрее
+        basket_products = cls.get_with_total()
+        if ids is not None:
+            basket_products = basket_products.filter(pk__in=ids)
+        total = basket_products.aggregate(basket_total=Sum('total'))
+        return total['basket_total']
 
     def __str__(self):
         return '{} - {}'.format(self.product.name, self.amount)
@@ -94,6 +116,9 @@ class Order(models.Model):
 
     def __str__(self):
         return f'{self.name} - {self.phone}'
+
+    def format_time(self):
+        return self.date_create.strftime('%Y-%m-%d %H:%M:%S')
 
     class Meta:
         verbose_name = 'Заказ'

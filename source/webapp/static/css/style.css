@@ -224,3 +224,11 @@ h2{
 .trash-can:hover {
 	color: #8f6bc9;
 }
+.cart-table {
+     margin-top: 8%;
+}
+.cart-table th,
+.cart-table td {
+	border: solid 1px gray;
+	padding: 5px 10px;
+}
