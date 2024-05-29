@@ -2,8 +2,12 @@
 {% block title %}Просмотр{% endblock %}
 {% load static %}
 {% block menu %}
-    <li class="nav-item"><a class="nav-link px-md-3 py-md-2 text-white" href="{% url 'webapp:product_update' pk=product.pk %}">Редактировать</a></li>
-    <li class="nav-item"><a class="nav-link px-md-3 py-md-2 text-white" href="{% url 'webapp:product_delete' pk=product.pk %}">Удалить</a></li>
+    {% if perms.webapp.change_product %}
+        <li class="nav-item"><a class="nav-link px-md-3 py-md-2 text-white" href="{% url 'webapp:product_update' pk=product.pk %}">Редактировать</a></li>
+    {% endif %}
+    {% if perms.webapp.delete_product %}
+        <li class="nav-item"><a class="nav-link px-md-3 py-md-2 text-white" href="{% url 'webapp:product_delete' pk=product.pk %}">Удалить</a></li>
+    {% endif %}
     <li class="nav-item"><a class="nav-link px-md-3 py-md-2 text-white" href="{% url 'webapp:basket_view' %}">Корзина</a></li>
 {% endblock %}
 
