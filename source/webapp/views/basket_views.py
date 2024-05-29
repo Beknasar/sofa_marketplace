@@ -158,13 +158,13 @@ class OrderCreateView(CreateView):
             order_products.append(order_product)
 
         # обеспечивает целостность данных и предотвращает частичное выполнение операций.
-        # with transaction.atomic():
+        with transaction.atomic():
             # массовое создание всех товаров в заказе
-        OrderProduct.objects.bulk_create(order_products)
+            OrderProduct.objects.bulk_create(order_products)
             # массовое обновление остатка у всех товаров
-        Product.objects.bulk_update(products, ('amount',))
+            Product.objects.bulk_update(products, ('amount',))
             # массовое удаление всех товаров в корзине
-        basket_products.delete()
+            basket_products.delete()
         return response
 
     def form_invalid(self, form):
