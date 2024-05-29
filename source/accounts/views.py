@@ -80,7 +80,7 @@ class UserListView(PermissionRequiredMixin, ListView):
         return self.request.user.groups.filter(pk=2) or self.request.user.groups.filter(pk=3) or self.request.user.pk == 1
 
 
-class UserDetailView(LoginRequiredMixin, PermissionRequiredMixin ,DetailView):
+class UserDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
     model = get_user_model()
     template_name = 'user_detail.html'
     context_object_name = 'user_obj'

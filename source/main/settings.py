@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 APPS = [
     'widget_tweaks',
     'smart_selects',
+    'accounts',
     'webapp',
 ]
 
