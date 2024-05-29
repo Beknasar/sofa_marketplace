@@ -77,7 +77,7 @@ class UserListView(PermissionRequiredMixin, ListView):
         return data
 
     def has_permission(self):
-        return self.request.user.groups.filter(pk=2) or self.request.user.groups.filter(pk=3) or self.request.user.pk == 1
+        return self.request.user.groups.filter(pk=1) or self.request.user.pk == 1
 
 
 class UserDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):

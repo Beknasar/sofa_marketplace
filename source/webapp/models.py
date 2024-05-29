@@ -6,7 +6,10 @@ from django.core.validators import MinValueValidator
 
 
 class Room(models.Model):
-    name = models.CharField(max_length=20, null=False, blank=False, verbose_name='Название комнаты')
+    name = models.CharField(max_length=20,
+                            null=False,
+                            blank=False,
+                            verbose_name='Название комнаты')
 
     def __str__(self):
         return self.name
@@ -17,10 +20,14 @@ class Room(models.Model):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=50, null=False, blank=False,
+    name = models.CharField(max_length=50,
+                            null=False,
+                            blank=False,
                             verbose_name='Название категории мебели')
-    room = models.ForeignKey('webapp.Room', on_delete=models.CASCADE,
-                             verbose_name='Комната', related_name='categories')
+    room = models.ForeignKey('webapp.Room',
+                             on_delete=models.CASCADE,
+                             verbose_name='Комната',
+                             related_name='categories')
 
     def __str__(self):
         return f'{self.room.name} --- {self.name}'
@@ -31,7 +38,10 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    room = models.ForeignKey('webapp.Room', on_delete=models.CASCADE, related_name='products', default=1)
+    room = models.ForeignKey('webapp.Room',
+                             on_delete=models.CASCADE,
+                             related_name='products',
+                             default=1)
     category = ChainedForeignKey(
         Category,  # Модель, на которую указывает ключ
         chained_field="room",  # Поле в текущей модели, которое влияет на выбор в связанном поле
@@ -41,11 +51,24 @@ class Product(models.Model):
         sort=True,  # Сортировать ли доступные значения в выпадающем списке
         related_name='products'
     )
-    name = models.CharField(max_length=100, null=False, blank=False, verbose_name='Название')
-    description = models.TextField(max_length=2000, null=True, blank=True, verbose_name='Описание')
-    amount = models.IntegerField(verbose_name="Остаток", validators=(MinValueValidator(0),))
-    price = models.DecimalField(verbose_name='Цена', max_digits=7, decimal_places=2, validators=(MinValueValidator(0),))
-    picture = models.ImageField(null=True, blank=True, upload_to='product_pics', verbose_name='Изображение')
+    name = models.CharField(max_length=100,
+                            null=False,
+                            blank=False,
+                            verbose_name='Название')
+    description = models.TextField(max_length=2000,
+                                   null=True,
+                                   blank=True,
+                                   verbose_name='Описание')
+    amount = models.IntegerField(verbose_name="Остаток",
+                                 validators=(MinValueValidator(0),))
+    price = models.DecimalField(verbose_name='Цена',
+                                max_digits=7,
+                                decimal_places=2,
+                                validators=(MinValueValidator(0),))
+    picture = models.ImageField(null=True,
+                                blank=True,
+                                upload_to='product_pics',
+                                verbose_name='Изображение')
 
     def __str__(self):
         return f'{self.name} - {self.amount}'
@@ -56,9 +79,12 @@ class Product(models.Model):
 
 
 class Basket(models.Model):
-    product = models.ForeignKey('webapp.Product', related_name='basket', on_delete=models.CASCADE,
+    product = models.ForeignKey('webapp.Product',
+                                related_name='basket',
+                                on_delete=models.CASCADE,
                                 verbose_name='Продукт')
-    amount = models.IntegerField(verbose_name='Количество', validators=[MinValueValidator(0),])
+    amount = models.IntegerField(verbose_name='Количество',
+                                 validators=[MinValueValidator(0),])
 
     @classmethod
     def get_with_total(cls):
@@ -92,12 +118,21 @@ class Order(models.Model):
     products = models.ManyToManyField('webapp.Product',
                                       through='webapp.OrderProduct',
                                       through_fields=['order', 'product'],
-                                      related_name='orders', blank=True, verbose_name='Продукты')
-    name = models.CharField(max_length=100, verbose_name='Имя')
-    phone = models.CharField(max_length=20, verbose_name='Телефон')
-    address = models.CharField(max_length=100, verbose_name='Адрес')
-    comment = models.TextField(max_length=500, verbose_name='Комментарий', blank=True, null=True)
-    date_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата и время создания')
+                                      related_name='orders',
+                                      blank=True,
+                                      verbose_name='Продукты')
+    name = models.CharField(max_length=100,
+                            verbose_name='Имя')
+    phone = models.CharField(max_length=20,
+                             verbose_name='Телефон')
+    address = models.CharField(max_length=100,
+                               verbose_name='Адрес')
+    comment = models.TextField(max_length=500,
+                               verbose_name='Комментарий',
+                               blank=True,
+                               null=True)
+    date_create = models.DateTimeField(auto_now_add=True,
+                                       verbose_name='Дата и время создания')
 
     def __str__(self):
         return f'{self.name} - {self.phone}'
@@ -115,10 +150,12 @@ class OrderProduct(models.Model):
                                 related_name='order_entries',  # все записи заказов, в которых участвует данный продукт
                                 on_delete=models.CASCADE,
                                 verbose_name='Продукт')
-    amount = models.IntegerField(verbose_name='Количество', validators=[MinValueValidator(0)])
+    amount = models.IntegerField(verbose_name='Количество',
+                                 validators=[MinValueValidator(0)])
     order = models.ForeignKey('webapp.Order',
                               related_name='order_products',  # все продукты в заказе
-                              on_delete=models.CASCADE, verbose_name='Заказ'
+                              on_delete=models.CASCADE,
+                              verbose_name='Заказ'
                               )
 
     def __str__(self):

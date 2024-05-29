@@ -34,17 +34,17 @@
                 {% block auth_menu %}
                     {% if request.user.is_authenticated %}
                         <li class="nav-item">
-                            <a href="{% url 'accounts:detail' request.user.pk %}" class="far fa-user text-light register-icon nav-link px-md-3 py-md-2 fa-2x"></a>
+                            <a href="{% url 'accounts:detail' request.user.pk %}" class="far fa-user text-light icon nav-link px-md-3 py-md-2"></a>
                         </li>
                         <li class="nav-item">
-                            <a href="{% url 'accounts:logout' %}?next={{ request.get_full_path }}" class="fa-solid fa-arrow-right-from-bracket text-light nav-link fa-2x">Выход</a>
+                            <a href="{% url 'accounts:logout' %}?next={{ request.get_full_path }}" class="fa-solid fa-right-from-bracket text-light icon nav-link px-md-3 py-md-2"></a>
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a href="{% url 'accounts:create' %}?next={{ request.get_full_path }}" class="fas fa-user-plus text-light nav-link px-md-3 py-md-2 fa-2x"></a>
+                            <a href="{% url 'accounts:create' %}?next={{ request.get_full_path }}" class="fas fa-user-plus text-light nav-link icon px-md-3 py-md-2"></a>
                         </li>
                         <li class="nav-item">
-                            <a href="{% url 'accounts:login' %}?next={{ request.get_full_path }}" class="fa-solid fa-right-to-bracket text-light nav-link px-md-3 py-md-2 fa-2x">Вход</a>
+                            <a href="{% url 'accounts:login' %}?next={{ request.get_full_path }}" class="fa-solid fa-right-to-bracket text-light nav-link icon px-md-3 py-md-2"></a>
                         </li>
                     {% endif %}
                 {% endblock %}
@@ -63,7 +63,7 @@
 <footer class="footer inner-shadow ">
     <div class="container">
         <br>
-        <p id="contact" class="mt-3">Copyright © All Rights Reserved. <a href="SofaShop.com ">SofaShop.com &thinsp; </a> - &nbsp; &nbsp; &nbsp; <a href="SofaShop@gmail.com">SofaShop@gmail.com</a></p>
+        <p id="contact" class="mt-3">Copyright © All Rights Reserved. <a href="{% url 'webapp:index' %}">SofaShop.com &thinsp; </a> - &nbsp; &nbsp; &nbsp; <a href="#SofaShop@gmail.com">SofaShop@gmail.com</a></p>
     </div>
 </footer>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

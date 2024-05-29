@@ -10,6 +10,9 @@ class BasketView(ListView):
     template_name = 'basket/basket_view.html'
     context_object_name = 'basket'
 
+    # Вместо model = Cart
+    # для выполнения запроса в базу через модель
+    # вместо подсчёта total-ов в Python
     def get_queryset(self):
         return Basket.get_with_product().filter(pk__in=self.get_basket_ids())
 
@@ -20,6 +23,8 @@ class BasketView(ListView):
         return context
 
     def get_basket_ids(self):
+        basket_ids = self.request.session.get('basket_ids', [])
+        print(basket_ids)
         return self.request.session.get('basket_ids', [])
 
 

@@ -12,7 +12,7 @@ class IndexView(SearchView):
     model = Product
     template_name = 'products/index.html'
     ordering = ['-room', 'name']
-    search_fields = ['name_icontains']
+    search_fields = ['name__icontains']
     paginate_by = 8
     context_object_name = 'products'
 
