@@ -24,7 +24,7 @@
         <h1>{{ product.name }}</h1>
         <p class="text-black-50">{{ product.category.name }}</p>
         <h4 class="price">{{ product.price }} сом</h4>
-        <label>Наличие: 
+        <label>Наличие на складе: 
             {% if product.amount > 0 %}
                 {{ product.amount }}шт
             {% else %}

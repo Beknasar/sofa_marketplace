@@ -6,7 +6,6 @@
         <thead>
             <tr>
                 <th>Товар</th>
-                <th>Наличие</th>
                 <th>Цена</th>
                 <th>Количество</th>
                 <th>Итого</th>
@@ -20,16 +19,15 @@
                         (<a href="{% url 'webapp:basket_delete_one' item.pk %}">Удалить Один</a>,
                         <a href="{% url 'webapp:basket_delete' item.pk %}">Удалить Все</a>)
                     </td>
-                    <td class="text-right">{{ item.product.get_status_display }}</td>
                     <td class="text-right">{{ item.product.price }}</td>
                     <td class="text-right">{{ item.amount }}</td>
 {#                    <td class="text-right">{{ item.get_total }}</td> #}
 {#                    при запросе с annotate #}
-                    <td>{{ item.total }}</td>
+                    <td class="text-right">{{ item.total }}</td>
                 </tr>
             {% endfor %}
             <tr>
-                <th colspan="4" class="text-right">Итого</th>
+                <th colspan="3" class="text-right">Итого</th>
                 <th class="text-right">{{ basket_total|default_if_none:0 }}</th>
             </tr>
         </tbody>

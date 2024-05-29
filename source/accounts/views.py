@@ -1,11 +1,10 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LogoutView
-from django.core.paginator import Paginator
-from django.contrib.auth import get_user_model, authenticate, login, logout
+from django.contrib.auth import get_user_model, login
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.db.models import Q, Sum
+from django.db.models import Q
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import  redirect
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
@@ -13,25 +12,6 @@ from django.views.decorators.cache import never_cache
 from accounts.forms import MyUserCreationForm, UserChangeForm, ProfileChangeForm, PasswordChangeForm
 from django.views.generic import CreateView, DetailView, ListView, UpdateView
 
-#
-# def login_view(request):
-#     context = {}
-#     if request.method == 'POST':
-#         username = request.POST.get('username')
-#         password = request.POST.get('password')
-#         user = authenticate(request, username=username, password=password)
-#         if user is not None:
-#             login(request, user)
-#             return redirect('index')
-#         else:
-#             context['has_error'] = True
-#     return render(request, 'registration/login.html', context=context)
-#
-#
-# def logout_view(request):
-#     logout(request)
-#     return redirect('index')
-from accounts.models import Profile
 from webapp.forms import SearchForm
 from webapp.models import Basket
 
@@ -91,16 +71,6 @@ class UserDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
         return self.request.user.pk == self.kwargs['pk']
 
     def get_context_data(self, **kwargs):
-        # print(self.object.orders.all())
-        # print(self.object)
-        #     for product in order.products.all():
-        #         paginator = Paginator(product, self.paginate_related_by, orphans=self.paginate_related_orphans)
-        #         page_number = self.request.GET.get('page', 1)
-        #         page = paginator.get_page(page_number)
-        #         kwargs['page_obj'] = page
-        #         kwargs['products'] = page.object_list
-        #         kwargs['is_paginated'] = page.has_other_pages()
-        # return super().get_context_data(**kwargs)
         return super().get_context_data(**kwargs)
 
 

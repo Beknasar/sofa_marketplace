@@ -1,3 +1,6 @@
+from decimal import Decimal, InvalidOperation
+
+from django.db import transaction
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from webapp.models import Product, Basket, OrderProduct, Order
@@ -142,18 +145,25 @@ class OrderCreateView(CreateView):
         basket_products = Basket.objects.filter(pk__in=self.get_basket_ids())
         products = []
         order_products = []
+
         for item in basket_products:
             product = item.product
             amount = item.amount
             product.amount -= amount
             products.append(product)
-            order_product = OrderProduct(order=order, product=product, amount=amount)
+
+            total = Decimal(item.amount * product.price)
+
+            order_product = OrderProduct(order=order, product=product, amount=amount, total=total)
             order_products.append(order_product)
-        # массовое создание всех товаров в заказе
+
+        # обеспечивает целостность данных и предотвращает частичное выполнение операций.
+        # with transaction.atomic():
+            # массовое создание всех товаров в заказе
         OrderProduct.objects.bulk_create(order_products)
-        # массовое обновление остатка у всех товаров
+            # массовое обновление остатка у всех товаров
         Product.objects.bulk_update(products, ('amount',))
-        # массовое удаление всех товаров в корзине
+            # массовое удаление всех товаров в корзине
         basket_products.delete()
         return response
 

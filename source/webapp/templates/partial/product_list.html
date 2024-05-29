@@ -22,10 +22,8 @@
                         {% if perms.webapp.delete_product %}
                             <a href="{% url 'webapp:product_delete' pk=product.pk %}" class="btn-overlay btn-overlay-delete"><i class="far fa-trash-alt fa-2x"></i></a>
                         {% endif %}
-                        <p>Количество: {{ product.amount }}</p>
-                        {% if product.amount <= 0 %}
-                            <p>Нет в наличии</p>
-                        {% else %}
+                        <p>Количество на складе: {{ product.amount }}</p>
+                        {% if not fields_only %}
                             {% include 'partial/basket_add_form.html' %}
                         {% endif %}
                         

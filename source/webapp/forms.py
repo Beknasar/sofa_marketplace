@@ -15,7 +15,7 @@ class ProductForm(forms.ModelForm):
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields = ['name', 'address', 'phone']
+        fields = ['name', 'address', 'phone', 'comment']
         widgets = {'phone': forms.NumberInput}
 
 
