@@ -33,6 +33,7 @@
                     <th>Цена</th>
                     <th>Количество</th>
                     <th>Итого</th>
+                    <th>Доставка</th>
                 </tr>
             </thead>
             <tbody>
@@ -44,10 +45,15 @@
                         <td class="text-right">{{ order_product.product.price }}</td>
                         <td class="text-right">{{ order_product.amount }}</td>
                         <td>{{ order_product.total|floatformat:2 }}</td>
+                        <td>{{ order.delivery.get_status_display|default:order.delivery.status }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
+{#        {% if delivery.status != 'cancelled' %}#}
+{#            {% url 'webapp:cancel_delivery' pk=order.delivery.pk as action_url %}#}
+{#            {% include 'partial/form.html' with action_url=action_url form_method='post' button_text='Отменить доставку' %}#}
+{#        {% endif %}#}
 {#        {% include 'partial/product_list.html' with products=order.products.all fields_only=True %}#}
      {% endfor %}
 

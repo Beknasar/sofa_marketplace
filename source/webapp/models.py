@@ -72,7 +72,7 @@ class Product(models.Model):
                                 verbose_name='Изображение')
 
     def __str__(self):
-        return f'{self.name} - {self.amount}'
+        return f'{self.room.name} --- {self.name} - {self.amount}'
 
     class Meta:
         verbose_name = 'Товар'
@@ -169,3 +169,27 @@ class OrderProduct(models.Model):
 
     def __str__(self):
         return f'{self.pk}: {self.amount} units of {self.product.name}'
+
+
+class Delivery(models.Model):
+    order = models.OneToOneField(Order, on_delete=models.CASCADE, related_name='delivery', verbose_name='Заказ')
+    delivery_date = models.DateTimeField(verbose_name='Дата доставки', null=True, blank=True)
+    name = models.CharField(verbose_name='Ответственный за доставку', max_length=100)
+    status = models.CharField(
+        max_length=50,
+        choices=[
+            ('pending', 'В пути'),
+            ('delivered', 'Доставлено'),
+            ('cancelled', 'Отменено')
+        ],
+        default='pending',
+        verbose_name='Статус'
+    )
+    photo = models.ImageField(upload_to='delivery_photos/', blank=True, null=True, verbose_name='Фотография')
+
+    def __str__(self):
+        return f'Доставка для Заказа №{self.order.pk}'
+
+    class Meta:
+        verbose_name = 'Доставка'
+        verbose_name_plural = 'Доставки'

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Product, Order, Basket
+from .models import Product, Order, Basket, Delivery
 
 
 class SearchForm(forms.Form):
@@ -12,10 +12,18 @@ class ProductForm(forms.ModelForm):
         exclude = []
 
 
+class DeliveryForm(forms.ModelForm):
+    class Meta:
+        model = Delivery
+        exclude = ['order']
+
+
 class OrderForm(forms.ModelForm):
+    delivery_date = forms.DateTimeField(label='Дата доставки', required=False)
+
     class Meta:
         model = Order
-        fields = ['name', 'address', 'phone', 'comment']
+        fields = ['name', 'address', 'phone', 'comment', 'delivery_date']
         widgets = {'phone': forms.NumberInput}
 
 
