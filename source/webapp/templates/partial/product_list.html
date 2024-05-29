@@ -13,13 +13,16 @@
                     <h5><a class="card-title" href="{% url 'webapp:product_view' product.pk %}">{{ product.name }}</a></h5>
                     <div class="mt-auto">
                         <p class="card-text">От {{ product.price }} сомов</p>
-                        <p class="card-text">Наличие: {{ product.get_status_display }}</p>
-{#                        <a href="{% url 'webapp:basket_count' pk=product.pk %}" class="btn btn-success btn-card mb-3">Добавить в корзину</a>#}
                         <a href="{% url 'webapp:product_create' %}" class="btn-overlay btn-overlay-plus"><i class="fas fa-plus fa-2x"></i></a>
                         <a href="{% url 'webapp:product_update' pk=product.pk %}" class="btn-overlay btn-overlay-edit"><i class="far fa-edit fa-2x"></i></a>
                         <a href="{% url 'webapp:product_delete' pk=product.pk %}" class="btn-overlay btn-overlay-delete"><i class="far fa-trash-alt fa-2x"></i></a>
                         <p>Количество: {{ product.amount }}</p>
-                        {% include 'partial/basket_add_form.html' %}
+                        {% if product.amount <= 0 %}
+                            <p>Нет в наличии</p>
+                        {% else %}
+                            {% include 'partial/basket_add_form.html' %}
+                        {% endif %}
+                        
                     </div>
                 </div>
             </div>

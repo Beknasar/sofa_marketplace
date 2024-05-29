@@ -35,12 +35,13 @@ class BasketAddView(CreateView):
         amount = form.cleaned_data.get('amount', 1)
         try:
             basket_product = Basket.objects.get(product=self.product, pk__in=self.get_basket_ids())
-            if self.product.status == 'in_stock':
-                basket_product.amount += amount
-            basket_product.save()
+            basket_product.amount += amount
+            if basket_product.amount <= self.product.amount:
+                basket_product.save()
         except Basket.DoesNotExist:
-            basket_product = Basket.objects.create(product=self.product, amount=amount)
-            self.save_to_session(basket_product)
+            if amount <= self.product.amount:
+                basket_product = Basket.objects.create(product=self.product, amount=amount)
+                self.save_to_session(basket_product)
         return redirect(self.get_success_url())
 
     def form_invalid(self, form):
@@ -139,11 +140,8 @@ class OrderCreateView(CreateView):
         for item in basket_products:
             product = item.product
             amount = item.amount
-
-            if product.status == 'in_stock':
-                product.amount -= amount
-                products.append(product)
-                product.save()
+            product.amount -= amount
+            products.append(product)
             order_product = OrderProduct(order=order, product=product, amount=amount)
             order_products.append(order_product)
         # массовое создание всех товаров в заказе

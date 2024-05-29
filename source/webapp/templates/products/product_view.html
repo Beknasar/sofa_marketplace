@@ -20,12 +20,14 @@
         <h1>{{ product.name }}</h1>
         <p class="text-black-50">{{ product.category.name }}</p>
         <h4 class="price">{{ product.price }} сом</h4>
-        <label>Наличие</label>
+        <label>Наличие: 
             {% if product.amount > 0 %}
-                <p>{{ product.get_status_display }} - {{ product.amount }}шт</p>
+                {{ product.amount }}шт
             {% else %}
-                <p>{{ product.get_status_display }}</p>
+                Нет в наличии
             {% endif %}
+        </label>
+            <br>
         <label>Описание</label>
         <p class="pre">{{ product.description }}</p>
         {% include 'partial/basket_add_form.html' %}

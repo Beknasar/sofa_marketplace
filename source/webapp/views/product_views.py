@@ -22,7 +22,7 @@ class IndexView(SearchView):
         return context
 
     def get_queryset(self):
-        return super().get_queryset()
+        return super().get_queryset().filter(amount__gt=0)
 
 
 class ProductView(DetailView):
@@ -40,7 +40,7 @@ class ProductView(DetailView):
         return context
 
     def get_queryset(self):
-        return super().get_queryset()
+        return super().get_queryset().filter(amount__gt=0)
 
 
 class ProductUpdateView(UpdateView):
@@ -48,6 +48,9 @@ class ProductUpdateView(UpdateView):
     form_class = ProductForm
     model = Product
     context_object_name = 'product'
+
+    def get_queryset(self):
+        return super().get_queryset().filter(amount__gt=0)
 
     def get_success_url(self):
         return reverse('webapp:product_view', kwargs={'pk': self.object.pk})
@@ -57,6 +60,9 @@ class ProductDeleteView(DeleteView):
     template_name = 'products/product_delete.html'
     model = Product
     success_url = reverse_lazy('webapp:index')
+
+    def get_queryset(self):
+        return super().get_queryset().filter(amount__gt=0)
 
 
 class ProductCreateView(CreateView):
@@ -80,9 +86,9 @@ class RoomProductsView(ListView):
         category_id = self.request.GET.get('category_id')
 
         if category_id:
-            return Product.objects.filter(category__id=category_id)
+            return Product.objects.filter(category__id=category_id, amount__gt=0)
         else:
-            return Product.objects.filter(category__room__id=room_id)
+            return Product.objects.filter(category__room__id=room_id, amount__gt=0)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
