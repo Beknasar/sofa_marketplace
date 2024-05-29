@@ -1,9 +1,9 @@
-from decimal import Decimal, InvalidOperation
-
+from decimal import Decimal
+from django.views.generic import View
 from django.db import transaction
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse, reverse_lazy
-from webapp.models import Product, Basket, OrderProduct, Order
+from webapp.models import Product, Basket, OrderProduct, Order, Delivery
 
 from django.views.generic import ListView, CreateView, DeleteView
 from webapp.forms import OrderForm, BasketAddForm
@@ -165,7 +165,27 @@ class OrderCreateView(CreateView):
             Product.objects.bulk_update(products, ('amount',))
             # массовое удаление всех товаров в корзине
             basket_products.delete()
+        Delivery.objects.create(order=order)
         return response
 
     def form_invalid(self, form):
         return redirect('webapp:basket_view')
+
+
+class CancelDeliveryView(View):
+    def post(self, request, *args, **kwargs):
+        delivery = get_object_or_404(Delivery, pk=kwargs['pk'])
+
+        if delivery.status != 'cancelled':
+            with transaction.atomic():
+                delivery.status = 'cancelled'
+                delivery.save()
+
+                # Возвращаем количество товаров на склад
+                order_products = delivery.order.order_products.all()
+                for order_product in order_products:
+                    product = order_product.product
+                    product.amount += order_product.amount
+                    product.save()
+
+        return redirect('accounts:detail', pk=self.request.user.pk)

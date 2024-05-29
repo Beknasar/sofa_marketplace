@@ -172,9 +172,14 @@ class OrderProduct(models.Model):
 
 
 class Delivery(models.Model):
-    order = models.OneToOneField(Order, on_delete=models.CASCADE, related_name='delivery', verbose_name='Заказ')
-    delivery_date = models.DateTimeField(verbose_name='Дата доставки', null=True, blank=True)
-    name = models.CharField(verbose_name='Ответственный за доставку', max_length=100)
+    order = models.OneToOneField(Order, on_delete=models.CASCADE,
+                                 related_name='delivery',
+                                 verbose_name='Заказ')
+    delivery_date = models.DateTimeField(verbose_name='Дата доставки',
+                                         null=True,
+                                         blank=True)
+    name = models.CharField(verbose_name='Ответственный за доставку',
+                            max_length=100)
     status = models.CharField(
         max_length=50,
         choices=[
@@ -185,10 +190,13 @@ class Delivery(models.Model):
         default='pending',
         verbose_name='Статус'
     )
-    photo = models.ImageField(upload_to='delivery_photos/', blank=True, null=True, verbose_name='Фотография')
+    photo = models.ImageField(upload_to='delivery_photos/',
+                              blank=True,
+                              null=True,
+                              verbose_name='Фотография')
 
     def __str__(self):
-        return f'Доставка для Заказа №{self.order.pk}'
+        return f'Доставка заказа №{self.order.pk}'
 
     class Meta:
         verbose_name = 'Доставка'

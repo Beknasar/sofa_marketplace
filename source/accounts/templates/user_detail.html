@@ -34,6 +34,7 @@
                     <th>Количество</th>
                     <th>Итого</th>
                     <th>Доставка</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -46,7 +47,16 @@
                         <td class="text-right">{{ order_product.amount }}</td>
                         <td>{{ order_product.total|floatformat:2 }}</td>
                         <td>{{ order.delivery.get_status_display|default:order.delivery.status }}</td>
+                        {% if order.delivery.status != 'cancelled' %}
+                        <td>
+                            <form method="post" action="{% url 'webapp:cancel_delivery' pk=order.delivery.pk %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Отменить доставку</button>
+                            </form>
+                        </td>
+                    {% endif %}
                     </tr>
+                    
                 {% endfor %}
             </tbody>
         </table>

@@ -9,7 +9,8 @@ from webapp.views import (IndexView,
                           BasketAddView,
                           BasketDeleteOneView,
                           BasketView,
-                          BasketDeleteView)
+                          BasketDeleteView,
+                          CancelDeliveryView)
 
 app_name = 'webapp'
 
@@ -35,6 +36,9 @@ urlpatterns = [
     ])),
     # ссылка на категорию товаров
     path('rooms/<int:pk>/products/', RoomProductsView.as_view(), name='room_products'),
-    # ссылка на создание заказа
-    path('order/create/', OrderCreateView.as_view(), name='order_create')
+    # ссылки на заказы
+    path('order/', include([
+        path('create/', OrderCreateView.as_view(), name='order_create'),
+        path('<int:pk>/cancel_delivery/', CancelDeliveryView.as_view(), name='cancel_delivery')
+    ])),
 ]
