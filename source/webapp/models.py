@@ -160,7 +160,10 @@ class OrderProduct(models.Model):
     total = models.DecimalField(verbose_name='Итоговый прайс',
                                 max_digits=7,
                                 decimal_places=2,
-                                validators=(MinValueValidator(0),))
+                                validators=(MinValueValidator(0),),
+                                default=0,
+                                null=True,
+                                blank=True)
     order = models.ForeignKey('webapp.Order',
                               related_name='order_products',  # все продукты в заказе
                               on_delete=models.CASCADE,

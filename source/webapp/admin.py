@@ -54,13 +54,14 @@ class OrderAdmin(admin.ModelAdmin):
 
     def cancel_order(self, request, queryset):
         for order in queryset:
-            order.status = 'cancelled'
-            order.save()
-            # Возвращаем товары на склад
-            for order_product in order.order_products.all():
-                product = order_product.product
-                product.amount += order_product.amount
-                product.save()
+            if order.delivery.status != 'cancelled':
+                order.delivery.status = 'cancelled'
+                order.delivery.save()
+                # Возвращаем товары на склад
+                for order_product in order.order_products.all():
+                    product = order_product.product
+                    product.amount += order_product.amount
+                    product.save()
         self.message_user(request, "Выбранные заказы были отменены и товары были возвращены на склад")
 
     cancel_order.short_description = "Отменить выбранные заказы и вернуть товары"
