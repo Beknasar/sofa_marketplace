@@ -173,6 +173,10 @@ class OrderProduct(models.Model):
     def __str__(self):
         return f'{self.pk}: {self.amount} units of {self.product.name}'
 
+    class Meta:
+        verbose_name = 'Запись заказа'
+        verbose_name_plural = 'Записи заказов'
+
 
 class Delivery(models.Model):
     order = models.OneToOneField(Order, on_delete=models.CASCADE,
