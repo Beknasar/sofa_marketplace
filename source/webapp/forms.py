@@ -26,15 +26,17 @@ class DeliveryForm(forms.ModelForm):
 
 
 class OrderForm(forms.ModelForm):
-    delivery_date = forms.DateTimeField(label='Дата доставки', required=False,
-                                        input_formats=['%Y-%m-%d', BROWSER_DATETIME_FORMAT,
-                                                       '%Y-%m-%dT%H:%M:%S', '%Y-%m-%d %H:%M',
-                                                       '%Y-%m-%d %H:%M:%S'],
-                                        widget=XDatepickerWidget)
+    # delivery_date = forms.DateTimeField(label='Дата доставки', required=False,
+    #                                     input_formats=['%Y-%m-%d', BROWSER_DATETIME_FORMAT,
+    #                                                    '%Y-%m-%dT%H:%M:%S', '%Y-%m-%d %H:%M',
+    #                                                    '%Y-%m-%d %H:%M:%S'],
+    #                                     widget=XDatepickerWidget)
 
     class Meta:
         model = Order
-        fields = ['name', 'address', 'phone', 'comment', 'delivery_date']
+        fields = ['name', 'address', 'phone', 'comment',
+                  # 'delivery_date'
+                  ]
         widgets = {'phone': forms.NumberInput}
 
 

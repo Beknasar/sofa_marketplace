@@ -7,6 +7,9 @@
         <li class="nav-item"><a class="nav-link px-md-3 py-md-2 text-white" href="{% url 'accounts:change' user_obj.pk %}">Редактировать</a></li>
         <li class="nav-item"><a class="nav-link px-md-3 py-md-2 text-white" href="{% url 'accounts:password_change' user_obj.pk %}">Смена пароля</a></li>
     {% endif %}
+    {% if request.user.is_authenticated %}
+        <li class="nav-item"><a class="nav-link px-md-3 py-md-2 text-white" href="{% url 'webapp:basket_view' %}">Корзина</a></li>
+    {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -46,15 +49,20 @@
                         <td class="text-right">{{ order_product.product.price }}</td>
                         <td class="text-right">{{ order_product.amount }}</td>
                         <td>{{ order_product.total|floatformat:2 }}</td>
-                        <td>{{ order.delivery.get_status_display|default:order.delivery.status }}</td>
-                        {% if order.delivery.status != 'cancelled' %}
+                        <td>{{ order.delivery.get_status_display|default:order.delivery.status }} 
+                            {% if order.delivery.status == 'delivered' %}
+                               - {{ order.delivery.delivery_date }}
+                            {% elif order.delivery.status != 'cancelled' %}
+                        </td>
                         <td>
                             <form method="post" action="{% url 'webapp:cancel_delivery' pk=order.delivery.pk %}">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-danger">Отменить доставку</button>
+                                <button type="submit" class="btn btn-danger">Отменить доставку</button>
                             </form>
                         </td>
-                    {% endif %}
+                        {% endif %}
+                        {% if order.delivery.status == 'delivered' %}
+                        {% endif %}
                     </tr>
                     
                 {% endfor %}

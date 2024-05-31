@@ -27,17 +27,17 @@ class OrderProductAdmin(admin.TabularInline):
     extra = 0
 
 
+class DeliveryAdmin(admin.ModelAdmin):
+    model = Delivery
+    list_display = ('__str__', 'delivery_date', 'status')
+    list_display_links = ('__str__',)
+
+
 class DeliveryInline(admin.StackedInline):
     model = Delivery
     fields = ('delivery_date', 'status')
     extra = 0
 
-
-# class OrderAdmin(admin.ModelAdmin):
-#     list_display = ['pk', 'name', 'phone', 'date_create']
-#     list_display_links = ('pk', 'name')
-#     inlines = (OrderProductAdmin,)
-#     ordering = ['-date_create']
 
 class OrderAdmin(admin.ModelAdmin):
     list_display = ['pk', 'name', 'phone', 'date_create', 'related_model_field']
@@ -84,7 +84,7 @@ class OrderAdmin(admin.ModelAdmin):
     export_to_csv.short_description = "Export to CSV"
 
 
-admin.site.register(Delivery)
+admin.site.register(Delivery, DeliveryAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Room, RoomAdmin)
