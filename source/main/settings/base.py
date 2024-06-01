@@ -33,6 +33,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'main.urls'
@@ -111,6 +112,8 @@ if not PRODUCTION:
 else:
     from .prod import *
 
+print(f"Debug Base: {DEBUG}")
+print(f"Production Base: {PRODUCTION}")
 if DEBUG:
     INTERNAL_IPS = ['127.0.0.1']
-    MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware']
+
