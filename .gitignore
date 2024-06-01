@@ -10,3 +10,5 @@ uploads
 .DS_Store
 settings_local.py
 .env
+.env.local
+.env.prod
