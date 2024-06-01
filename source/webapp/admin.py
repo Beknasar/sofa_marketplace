@@ -30,12 +30,12 @@ class OrderProductAdmin(admin.TabularInline):
 class DeliveryAdmin(admin.ModelAdmin):
     model = Delivery
     list_display = ('__str__', 'delivery_date', 'status')
+    readonly_fields = ['order']
     list_display_links = ('__str__',)
 
 
 class DeliveryInline(admin.StackedInline):
     model = Delivery
-    fields = ('delivery_date', 'status')
     extra = 0
 
 
@@ -44,6 +44,7 @@ class OrderAdmin(admin.ModelAdmin):
     list_display_links = ('pk', 'name')
     inlines = (OrderProductAdmin, DeliveryInline)
     ordering = ['-date_create']
+    readonly_fields = ['user']
     search_fields = ['name', 'phone']
     list_filter = ['date_create']
     actions = ['export_to_csv', 'cancel_order']
