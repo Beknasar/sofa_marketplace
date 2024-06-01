@@ -74,10 +74,10 @@ class OrderAdmin(admin.ModelAdmin):
         response['Content-Disposition'] = 'attachment; filename="orders.csv"'
 
         writer = csv.writer(response)
-        writer.writerow(['ID', 'Name', 'Phone', 'Date Created'])
+        writer.writerow(['ID', 'Name', 'Phone', 'Date Created', 'Status'])
 
         for order in queryset:
-            writer.writerow([order.pk, order.name, order.phone, order.date_create])
+            writer.writerow([order.pk, order.name, order.phone, order.date_create, order.delivery.status])
 
         return response
 
