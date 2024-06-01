@@ -112,8 +112,7 @@ if not PRODUCTION:
 else:
     from .prod import *
 
-print(f"Debug Base: {DEBUG}")
-print(f"Production Base: {PRODUCTION}")
+
 if DEBUG:
     INTERNAL_IPS = ['127.0.0.1']
 
