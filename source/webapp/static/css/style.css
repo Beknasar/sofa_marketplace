@@ -234,8 +234,18 @@ h2{
 }
 
 .avatar {
-	width: 300px;
-	height: auto;
+	width: 400px;
+	height: 400px;
 	border-radius: 50%;
-	border: 3px solid black;
+	border: 5px solid black;
+}
+
+.profile_text {
+	background-color: #8f6bc9;
+	color: white;
+	font-size: 15px;
+	padding: 30px;
+	border-radius: 30px;
+	text-align: left;
+	width: 70%;
 }

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}Пользователь{% endblock %}
 
 {% block auth_menu %}
@@ -13,24 +13,33 @@
 {% endblock %}
 
 {% block content %}
-    <div style="text-align: left;">
+    <div class="mb-5">
         <h1>Личная страница пользователя
             <hr>
             {{ user_obj.get_full_name|default:user_obj.username }}
         </h1>
-        {% if user_obj.profile.avatar %}
-            <img class="avatar" src="{{ user_obj.profile.avatar.url }}" alt="user picture">
-        {% endif %}
-        <p>Имя: {{ user_obj.first_name }}</p>
-        <p>Фамилия: {{ user_obj.last_name }}</p>
-        <p>Почта: {{ user_obj.email }}</p>
-        <p>О себе:</p>
-        <p class="pre">{{ user_obj.profile.about }}</p>
+        <div class="row mt-5">
+            <div class="col">
+                {% if user_obj.profile.avatar %}
+                    <img class="avatar" class="mt-3 text-center" src="{{ user_obj.profile.avatar.url }}" alt="user picture">
+                {% else %}
+                    <img class="avatar" class="mt-3 text-center" src="{% static 'img/empty.png' %}" style="width: 80%;
+	height: 400px;" alt="user picture">
+                {% endif %}
+            </div>
+            <div class="col profile_text">
+                <p>Имя: {{ user_obj.first_name }}</p>
+                <p>Фамилия: {{ user_obj.last_name }}</p>
+                <p>Почта: {{ user_obj.email }}</p>
+                <p>О себе:</p>
+                <p class="pre">{{ user_obj.profile.about }}</p>
+            </div>
+        </div>
     </div>
-    <h2 class="text-center clear mb-5">Заказы пользователя:</h2>
+    <h2 class="text-center clear my-5">Заказы пользователя:</h2>
     {% for order in user_obj.orders.all %}
         <h3>Дата заказа: {{ order.date_create }}</h3>
-        <table class="table table-light table-striped mb-5" align="center">
+        <table class="table table-light table-striped" align="center">
             <thead>
                 <tr>
                     <th>Товар</th>
@@ -62,18 +71,11 @@
                             </form>
                         </td>
                         {% endif %}
-                        {% if order.delivery.status == 'delivered' %}
-                        {% endif %}
                     </tr>
-                    
                 {% endfor %}
             </tbody>
         </table>
-{#        {% if delivery.status != 'cancelled' %}#}
-{#            {% url 'webapp:cancel_delivery' pk=order.delivery.pk as action_url %}#}
-{#            {% include 'partial/form.html' with action_url=action_url form_method='post' button_text='Отменить доставку' %}#}
-{#        {% endif %}#}
-{#        {% include 'partial/product_list.html' with products=order.products.all fields_only=True %}#}
+        <hr>
      {% endfor %}
 
 
