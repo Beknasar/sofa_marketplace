@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Beknazar</title>
+    <link rel="stylesheet" href="{% static 'css/contact_styles.css' %}">
+    <link href="{% static 'img/favicon.ico' %}" rel="icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Sacramento&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="top-container">
+        <img class="top-cloud" src="{% static 'img/cloud.png' %}" alt="cloud-image">
+        <h1>I'm Beknazar.</h1>
+        <h2>a <span class="pro">pro</span>grammer.</h2>
+        <img class="bottom-cloud" src="{% static 'img/cloud.png' %}" alt="cloud-image">
+        <img src="{% static 'img/mountain.png' %}" alt="mountain-image">
+    </div>
+    <div class="middle-container">
+        <div class="profile">
+            <img id="my_photo" src="{% static 'img/beknazar.jpg' %}" alt="profile_image">
+            <h2>Hello.</h2>
+            <p class="intro">I am Web Developer. I'm also interested in Blender, Photoshop and game development. I❤games and coffee.</p>
+        </div>
+        <hr>
+        <div class="skills">
+            <h2>My Skills.</h2>
+            <div class="skill-row">
+                  <img class="web_dev_img" src="https://cdn-icons-png.flaticon.com/512/1049/1049443.png" alt="web_development image">
+                  <h3>Modelling & Development</h3>
+                  <p>I started learning to code when I was 14 years old because I wanted to make my own video games and AI. Over time, I have gained of experience 3D modelling and developing games and web applications.</p>
+            </div>
+            <div class="skill-row">
+                  <img class="dive_man_img" src="{% static 'img/diving.png' %}" alt="diving_image">
+                  <h3>Rest at nature</h3>
+                  <p>One of my best skill is actually swimming and diving. I'm like a fish in the water. Underwater treasure hunting is my favorite game.</p>
+            </div>
+        </div>
+        <hr>
+        <div class="contact-me">
+            <h2>Get In Touch</h2>
+            <h3>If you love natural beauty as I do.</h3>
+            <p class="contact-message"> Do you love mountains and seas? Do you like to enjoy the sunset and night stars and silence? Do you prefer outdoor recreation?
+            <br>
+            🌲We can write code💻 together while watching nature with cups☕ of coffee.🌲 </p>
+            <a class="btn" href="mailto:680633@gmail.com">CONTACT ME</a>
+        </div>
+    </div>
+
+
+    <div class="bottom-container">
+        <a class="footer-link" href="https://kg.linkedin.com/in/beknasar-ulanbek-uulu-48728b200">LinkedIn</a>
+        <a class="footer-link" href="https://github.com/Beknasar">GitHub</a>
+        <a class="footer-link" href="https://www.appbrewery.co/">Website</a>
+        <p class="copyright">© 2022 Beknazar Ulanbek Uulu.</p>
+    </div>
+
+</body>
+</html>

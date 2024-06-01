@@ -10,7 +10,7 @@ from webapp.views import (IndexView,
                           BasketDeleteOneView,
                           BasketView,
                           BasketDeleteView,
-                          CancelDeliveryView)
+                          CancelDeliveryView, ContactView)
 
 app_name = 'webapp'
 
@@ -41,4 +41,5 @@ urlpatterns = [
         path('create/', OrderCreateView.as_view(), name='order_create'),
         path('<int:pk>/cancel_delivery/', CancelDeliveryView.as_view(), name='cancel_delivery')
     ])),
+    path('contact/', ContactView.as_view(), name='contact')
 ]

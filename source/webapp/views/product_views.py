@@ -2,10 +2,14 @@ from django.db.models import Q
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.urls import reverse, reverse_lazy
-from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
+from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView, TemplateView
 from webapp.forms import SearchForm, ProductForm
 from webapp.models import Product, Room
 from .base_views import SearchView
+
+
+class ContactView(TemplateView):
+    template_name = 'contact.html'
 
 
 class IndexView(SearchView):
