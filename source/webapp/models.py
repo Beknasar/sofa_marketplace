@@ -158,7 +158,7 @@ class OrderProduct(models.Model):
     amount = models.IntegerField(verbose_name='Количество',
                                  validators=[MinValueValidator(0)])
     total = models.DecimalField(verbose_name='Итоговый прайс',
-                                max_digits=7,
+                                max_digits=10,
                                 decimal_places=2,
                                 validators=(MinValueValidator(0),),
                                 default=0,
