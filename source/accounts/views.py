@@ -4,14 +4,14 @@ from django.contrib.auth import get_user_model, login
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.db.models import Q
 from django.http import HttpResponseRedirect
-from django.shortcuts import  redirect
+from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
-
+from accounts.models import Profile
 from accounts.forms import MyUserCreationForm, UserChangeForm, ProfileChangeForm, PasswordChangeForm
 from django.views.generic import CreateView, DetailView, ListView, UpdateView
-
+from django.core.exceptions import ObjectDoesNotExist
 from webapp.forms import SearchForm
 from webapp.models import Basket
 
@@ -110,7 +110,12 @@ class UserChangeView(PermissionRequiredMixin, UpdateView):
         return self.render_to_response(context)
 
     def get_profile_form(self):
-        form_kwargs = {'instance': self.object.profile}
+        try:
+            profile = self.object.profile
+        except ObjectDoesNotExist:
+            profile = Profile.objects.create(user=self.object)
+
+        form_kwargs = {'instance': profile}
         if self.request.method == 'POST':
             form_kwargs['data'] = self.request.POST
             form_kwargs['files'] = self.request.FILES
