@@ -110,12 +110,7 @@ class UserChangeView(PermissionRequiredMixin, UpdateView):
         return self.render_to_response(context)
 
     def get_profile_form(self):
-        try:
-            profile = self.object.profile
-        except ObjectDoesNotExist:
-            profile = Profile.objects.create(user=self.object)
-
-        form_kwargs = {'instance': profile}
+        form_kwargs = {'instance': self.object.profile}
         if self.request.method == 'POST':
             form_kwargs['data'] = self.request.POST
             form_kwargs['files'] = self.request.FILES
