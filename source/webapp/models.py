@@ -191,10 +191,11 @@ class Delivery(models.Model):
         max_length=50,
         choices=[
             ('pending', 'В пути'),
+            ('in_stock', 'На складе'),
             ('delivered', 'Доставлено'),
             ('cancelled', 'Отменено')
         ],
-        default='pending',
+        default='in_stock',
         verbose_name='Статус'
     )
     photo = models.ImageField(upload_to='delivery_photos/',
