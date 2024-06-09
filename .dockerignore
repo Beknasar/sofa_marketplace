@@ -1,0 +1,10 @@
+.idea/
+venv
+__pycache__
+media
+.env
+source/webapp/migrations/
+db.sqlite3
+static
+staticfiles
+.idea
